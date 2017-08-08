@@ -39,9 +39,8 @@ class WechatMemberCards extends BaseController
     {
         $card = wei()->card()->curApp()->notDeleted()->findId($req['id']);
 
-
-        print_r($_POST);die;
-
+        print_r($_POST);
+        die;
 
         return $this->suc();
     }
