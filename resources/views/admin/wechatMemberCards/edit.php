@@ -466,7 +466,7 @@ $view->layout();
           </div>
         </div>
 
-        <?php for ($i = 1; $i <= 3; $i++) : ?>
+        <?php for ($i = 1; $i <= 3; ++$i) : ?>
         <div class="form-group">
           <label class="col-lg-2 control-label"></label>
           <div class="col-lg-4">
