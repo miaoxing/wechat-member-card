@@ -24,7 +24,7 @@ class WechatMemberCards extends BaseController
 
     public function editAction($req)
     {
-        $card = wei()->card()->curApp()->notDeleted()->findId($req['id']);
+        $card = wei()->wechatCard()->curApp()->notDeleted()->findId($req['id']);
         $shops = $card->getShops();
 
         return get_defined_vars();
@@ -37,10 +37,9 @@ class WechatMemberCards extends BaseController
 
     public function updateAction($req)
     {
-        $card = wei()->card()->curApp()->notDeleted()->findId($req['id']);
+        $card = wei()->wechatCard()->curApp()->notDeleted()->findId($req['id']);
 
-        print_r($_POST);
-        die;
+        $card->save($req);
 
         return $this->suc();
     }

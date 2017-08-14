@@ -1,21 +1,20 @@
 define([
   'template',
+  'css!plugins/wechat-card/css/admin/cards.css',
+  'form',
+  'jquery-deparam',
+  'validator',
   'plugins/admin/js/image-input',
   'comps/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/js/bootstrap-colorselector',
   'css!comps/bootstrap-colorselector/lib/bootstrap-colorselector-0.2.0/css/bootstrap-colorselector',
   'daterangepicker',
-  'linkTo'
+  'linkTo',
+  'plugins/app/libs/jquery.populate/jquery.populate',
+  'plugins/app/libs/jquery-toggle-display/jquery-toggle-display'
 ], function (template) {
-  var COVER_TYPE_IMAGE = 0;
-  var COVER_TYPE_COLOR = 1;
   var DATE_TYPE_FIX_TIME_RANGE = 1;
   var DATE_TYPE_FIX_TERM = 2;
   var MAX_CUSTOM_FIELDS = 3;
-  var CUSTOM_FIELD_NAMES = {
-    1: '一',
-    2: '二',
-    3: '三'
-  };
 
   var WechatMemberCards = function () {
     this.$el = $('body');
@@ -30,40 +29,51 @@ define([
     $.extend(this, options);
 
     this.$articleItemTpl = template.compile(this.$('.js-article-item-tpl').html());
-    this.$customFieldItemTpl = template.compile(this.$('.js-custom-field-item-tpl').html());
-    this.$addCustomField = this.$('.js-add-custom-field');
 
+    this.loadFormData();
     this.initFormPlugins();
     this.initFormEvents();
-    this.loadFormData();
   };
 
   WechatMemberCards.prototype.loadFormData = function () {
-    //this.changeShopType(data.shopType);
-    //this.changeCoverType(this.data.coverType);
+    var that = this;
+    var data = this.data;
+
+    this.$('.js-card-form')
+      .populate(data)
+      .loadParams()
+      .ajaxForm({
+        url: $.url('admin/wechat-member-cards', {_method: data.id ? 'PUT' : 'POST'}),
+        type: 'post',
+        dataType: 'json',
+        beforeSubmit: function (arr, $form) {
+          return $form.valid();
+        },
+        success: function (ret) {
+          $.msg(ret, function () {
+            if (ret.code === 1) {
+              window.location = $.url('admin/wechat-member-cards');
+            }
+          });
+        }
+      })
+      .validate();
+    if (data.date_info.begin_time != null && data.date_info.begin_time != '0000-00-00 00:00:00') {
+      this.$('.js-date-range').val(data.date_info.begin_time.substr(0, 10) + ' ~ ' + data.date_info.end_time.substr(0, 10));
+    }
+
+    this.changeDateInfoType(data.date_info.type);
+
+    $.each(data.text_image_list, function (i, row) {
+      that.addArticleItem(row);
+    });
   };
 
   WechatMemberCards.prototype.initFormEvents = function () {
     var that = this;
 
-    this.$('.js-cover-type').change(function () {
-      that.changeCoverType($(this).val());
-    });
-
-    this.$('.js-date-type').change(function () {
-      that.changeDateType($(this).val());
-    });
-
-    this.$('.js-time-limit-type').change(function () {
-      that.changeTimeLimitType($(this).val());
-    });
-
-    this.$('.js-supply-bonus').change(function () {
-      that.$('.js-bonus-form-groups').toggle($(this).prop('checked'));
-    });
-
-    this.$('.js-supply-discount').change(function () {
-      that.$('.js-discount-form-groups').toggle($(this).prop('checked'));
+    this.$('.js-date-info-type').change(function () {
+      that.changeDateInfoType($(this).val());
     });
 
     this.$('.js-add-article').click(function () {
@@ -74,26 +84,25 @@ define([
        $(this).closest('.js-article-item').remove();
     });
 
-    this.$addCustomField.click(function () {
-      that.addCustomFieldItem();
+    // 开关时，更新按钮文案
+    this.$('.js-collapse')
+      .on('show.bs.collapse', function () {
+        var $trigger = $('[data-toggle="collapse"][href="#' + $(this).attr('id') + '"]');
+        $trigger.data('show-text', $trigger.html());
+        $trigger.html($trigger.data('hide-text'));
+      })
+      .on('hide.bs.collapse', function () {
+        var $trigger = $('[data-toggle="collapse"][href="#' + $(this).attr('id') + '"]');
+        $trigger.html($trigger.data('show-text'));
+      });
+
+    // 五个类目最多选择三个
+    this.$('.js-field').change(function () {
+      that.$('.js-field:unchecked').prop('disabled', that.$('.js-field:checked').length >= MAX_CUSTOM_FIELDS);
     });
 
-    this.$el.on('click', '.js-remove-custom-field', function () {
-      that.removeCustomFieldItem(this);
-    });
-
-    // 适用门店
-    this.$('.js-shop-type').change(function () {
-      that.changeShopType(this.value);
-    });
-  };
-
-  WechatMemberCards.prototype.changeShopType = function (type) {
-    if (type == '1') {
-      this.$('.js-shop-type-1').show();
-    } else {
-      this.$('.js-shop-type-1').hide();
-    }
+    // 选中某个值，显示/隐藏某区域
+    this.$('.js-toggle-display').toggleDisplay();
   };
 
   WechatMemberCards.prototype.addArticleItem = function (data) {
@@ -109,71 +118,13 @@ define([
     this.$('.js-article-list').append($tpl);
   };
 
-  WechatMemberCards.prototype.addCustomFieldItem = function (data) {
-    data = data || {};
-
-    var count = this.$('.js-custom-field-item').length;
-    if (count >= MAX_CUSTOM_FIELDS) {
-      $.warning('最多只能添加' + MAX_CUSTOM_FIELDS + '个自定义入口');
-      return;
-    }
-
-    data.name = CUSTOM_FIELD_NAMES[count + 1];
-    var $tpl = $(this.$customFieldItemTpl(data));
-    $tpl.find('.js-custom-field-link-to').linkTo({
-      data: {},
-      name: 'dd',
-      hide: {
-        keyword: true,
-        decorator: true
-      }
-    });
-
-    this.$('.js-custom-field-list').append($tpl);
-
-    if (count + 1 >= MAX_CUSTOM_FIELDS) {
-      this.$addCustomField.prop('disabled', true);
-    }
-  };
-
-  WechatMemberCards.prototype.removeCustomFieldItem = function (el) {
-    $(el).closest('.js-custom-field-item').remove();
-
-    var count = this.$('.js-custom-field-item').length;
-    if (count < MAX_CUSTOM_FIELDS) {
-      this.$addCustomField.prop('disabled', false);
-    }
-
-    // 更新入口的标题
-    this.$('.js-custom-field-title').each(function (index) {
-      $(this).html('入口' + CUSTOM_FIELD_NAMES[index + 1]);
-    });
-  };
-
-  WechatMemberCards.prototype.changeDateType = function (type) {
+  WechatMemberCards.prototype.changeDateInfoType = function (type) {
     this.$('.js-date-range').prop('disabled', type != DATE_TYPE_FIX_TIME_RANGE);
-  };
-
-  WechatMemberCards.prototype.changeCoverType = function (type) {
-    if (type == COVER_TYPE_IMAGE) {
-      this.$('.js-cover-type-image').show();
-      this.$('.js-cover-type-color').hide();
-    } else {
-      this.$('.js-cover-type-image').hide();
-      this.$('.js-cover-type-color').show();
-    }
-  };
-
-  WechatMemberCards.prototype.changeTimeLimitType = function (type) {
-    if (type == 'part') {
-      this.$('.js-time-limit-type-part').show();
-    } else {
-      this.$('.js-time-limit-type-part').hide();
-    }
   };
 
   WechatMemberCards.prototype.initFormPlugins = function () {
     var that = this;
+    var data = this.data;
 
     // 商家Logo
     this.$('.js-logo-url').imageUploadInput({
@@ -189,8 +140,8 @@ define([
 
     // 日期范围选择
     this.$('.js-date-range').daterangepicker({
-      format: 'YYYY.MM.DD',
-      separator: '~'
+      format: 'YYYY-MM-DD',
+      separator: ' ~ '
     }, function (start, end) {
       that.$('.js-start-date').val(start.format(this.format));
       that.$('.js-end-date').val(end.format(this.format));
@@ -199,6 +150,30 @@ define([
 
     this.$('.js-tooltips').tooltip({
       container: 'body'
+    });
+
+    var regex = /^([a-z0-9_]+)\[([a-z0-9_]+)\]$/;
+    this.$('.js-link-to').each(function () {
+      var $this = $(this);
+      var name = $this.data('name');
+      var value;
+
+      // 适配单个和数组的情况 abc[def]
+      var result = name.match(regex);
+      if (result && result.length === 3) {
+        value = data[result[1]][result[2]];
+      } else {
+        value = data[name];
+      }
+
+      $this.linkTo({
+        data: value,
+        name: name,
+        hide: {
+          keyword: true,
+          decorator: true
+        }
+      });
     });
   };
 
