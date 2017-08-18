@@ -5,6 +5,13 @@ use Miaoxing\WechatCard\Service\WechatCardRecord;
 $view->layout();
 ?>
 
+<style>
+  /* 让 */
+  .btn-file {
+    overflow: visible;
+  }
+</style>
+
 <?= $block('header-actions') ?>
 <a class="btn btn-default" href="<?= $url('admin/wechat-member-cards') ?>">返回列表</a>
 <?= $block->end() ?>
@@ -34,8 +41,8 @@ $view->layout();
           </label>
 
           <div class="js-upload-container col-lg-4">
-            <input type="file" class="js-logo-url"/>
-            <input type="hidden" id="logo-url" name="logo_url" class="js-image-url"/>
+            <input type="file" class="js-logo-file"/>
+            <input type="hidden" id="logo-url" name="logo_url" class="js-logo-url js-image-url"/>
           </div>
 
           <label class="col-lg-6 help-text">
@@ -50,11 +57,11 @@ $view->layout();
 
           <div class="col-lg-4">
             <label class="radio-inline">
-              <input type="radio" class="js-toggle-display" name="cover_type" value="0" checked="checked"
+              <input type="radio" class="js-cover-type js-toggle-display" name="cover_type" value="0" checked="checked"
                 data-value=":checked" data-target=".js-cover-type-image" data-reverse-target=".js-cover-type-color">图片
             </label>
             <label class="radio-inline">
-              <input type="radio" class="js-toggle-display" name="cover_type" value="1" data-value=":checked"
+              <input type="radio" class="js-cover-type js-toggle-display" name="cover_type" value="1" data-value=":checked"
                 data-target=".js-cover-type-color" data-reverse-target=".js-cover-type-image"> 颜色
             </label>
 
@@ -62,8 +69,8 @@ $view->layout();
               <p class="upload_tips">请参照 <a
                 href="https://mp.weixin.qq.com/cgi-bin/readtemplate?t=cardticket/card_cover_tmpl&type=info&lang=zh_CN"
                 target="_blank">微信图片规范</a> 上传</p>
-              <input type="file" class="js-background-pic-url"/>
-              <input type="hidden" name="background_pic_url" class="js-image-url"/>
+              <input type="file" class="js-background-pic-file"/>
+              <input type="hidden" name="background_pic_url" class="js-background-pic-url js-image-url"/>
             </div>
 
             <div class="js-cover-type-color m-t display-none">

@@ -47,7 +47,24 @@ define([
         type: 'post',
         dataType: 'json',
         beforeSubmit: function (arr, $form) {
-          return $form.valid();
+          if (!$form.valid()) {
+            return false;
+          }
+
+          if (!that.$('.js-logo-url').val()) {
+            that.$('.js-logo-file').focus();
+            $.err('请上传商家Logo');
+            return false;
+          }
+
+          if (that.$('.js-cover-type:checked').val() === '0'
+            && !that.$('.js-background-pic-url').val()) {
+            that.$('.js-background-pic-file').focus();
+            $.err('请上传卡券封面');
+            return false;
+          }
+
+          return true;
         },
         success: function (ret) {
           $.msg(ret, function () {
@@ -111,11 +128,26 @@ define([
 
     var $tpl = $(this.$articleItemTpl(data));
 
-    $tpl.find('.js-article-url').imageUploadInput({
-      uploadUrl: $.url('admin/wechat-medias/upload-img')
-    });
+    var $url = $tpl.find('.js-article-url');
+    $url.imageUploadInput();
+    this.createWechatMediaAfterUpload($url);
 
     this.$('.js-article-list').append($tpl);
+  };
+
+  /**
+   * 在图片上传之后，再异步上传到微信资源库
+   */
+  WechatMemberCards.prototype.createWechatMediaAfterUpload = function ($input) {
+    $input.on('fileuploaded', function (event, data) {
+      $.ajax({
+        url: $.url('admin/wechat-medias/create'),
+        type: 'post',
+        data: {
+          url: data.response.url
+        }
+      });
+    });
   };
 
   WechatMemberCards.prototype.changeDateInfoType = function (type) {
@@ -127,14 +159,14 @@ define([
     var data = this.data;
 
     // 商家Logo
-    this.$('.js-logo-url').imageUploadInput({
-      uploadUrl: $.url('admin/wechat-medias/upload-img')
-    });
+    var $logoFile = this.$('.js-logo-file');
+    $logoFile.imageUploadInput();
+    this.createWechatMediaAfterUpload($logoFile);
 
     // 卡券封面图片
-    this.$('.js-background-pic-url').imageUploadInput({
-      uploadUrl: $.url('admin/wechat-medias/upload-img')
-    });
+    var $picFile = this.$('.js-background-pic-file');
+    $picFile.imageUploadInput();
+    this.createWechatMediaAfterUpload($picFile);
 
     this.$('.js-color').colorselector();
 

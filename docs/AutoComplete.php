@@ -1,13 +1,13 @@
 <?php
 
-namespace plugins\source\docs {
+namespace plugins\wechatMemberCard\docs {
 
-    use Miaoxing\Source\Service\Source;
-    use Miaoxing\Source\Service\SourceRecord;
+    use Miaoxing\WechatMemberCard\Service\WechatMember;
+    use Miaoxing\WechatMemberCard\Service\WechatMemberRecord;
 
     /**
-     * @property    Source $source 来源服务
-     * @method      SourceRecord|SourceRecord[] source()
+     * @property    WechatMember $wechatMember 微信会员服务
+     * @method      WechatMemberRecord|WechatMemberRecord[] wechatMember()
      */
     class AutoComplete
     {
@@ -17,7 +17,7 @@ namespace plugins\source\docs {
 namespace {
 
     /**
-     * @return \plugins\source\docs\AutoComplete
+     * @return \plugins\wechatMemberCard\docs\AutoComplete
      */
     function wei()
     {
