@@ -3,6 +3,7 @@
 namespace Miaoxing\WechatMemberCard\Controller\Admin;
 
 use miaoxing\plugin\BaseController;
+use Miaoxing\WechatCard\Service\WechatCardRecord;
 
 class WechatMemberCards extends BaseController
 {
@@ -16,6 +17,45 @@ class WechatMemberCards extends BaseController
     ];
 
     protected $displayPageHeader = true;
+
+    public function indexAction($req)
+    {
+        switch ($req['_format']) {
+            case 'json':
+                $cards = wei()->wechatCard()
+                    ->curApp()
+                    ->andWhere(['type' => WechatCardRecord::TYPE_MEMBER_CARD]);
+
+                // 分页
+                $cards->limit($req['rows'])->page($req['page']);
+
+                // 排序
+                $cards->desc('id');
+
+                $cards->notDeleted();
+
+                $data = [];
+                $cards->findAll();
+                /** @var WechatCardRecord $card */
+                foreach ($cards as $card) {
+                    $data[] = $card->toArray() + [
+                            'status_name' => $card->getStatusName(),
+                            'source_name' => $card->getConstantValue('source', $card['source'], 'text')
+                        ];
+                }
+
+                return $this->suc([
+                    'data' => $data,
+                    'page' => $req['page'],
+                    'rows' => $req['rows'],
+                    'records' => $cards->count(),
+                ]);
+                break;
+
+            default:
+                return get_defined_vars();
+        }
+    }
 
     public function newAction($req)
     {
@@ -39,7 +79,10 @@ class WechatMemberCards extends BaseController
     {
         $card = wei()->wechatCard()->curApp()->notDeleted()->findId($req['id']);
 
-        $card->save($req);
+        $card->fromArray($req);
+        $card['type'] = WechatCardRecord::TYPE_MEMBER_CARD;
+
+        $card->save();
 
         return $this->suc();
     }

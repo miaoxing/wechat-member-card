@@ -978,7 +978,7 @@ $view->layout();
           </button>
 
           &nbsp; &nbsp; &nbsp;
-          <a class="btn btn-default" href="<?= $url('admin/cards') ?>">
+          <a class="btn btn-default" href="<?= $url('admin/wechat-member-cards') ?>">
             <i class="fa fa-undo bigger-110"></i>
             返回列表
           </a>

@@ -161,7 +161,7 @@ define([
       // 适配单个和数组的情况 abc[def]
       var result = name.match(regex);
       if (result && result.length === 3) {
-        value = data[result[1]][result[2]];
+        value = data[result[1]] ? data[result[1]][result[2]] : {};
       } else {
         value = data[name];
       }
