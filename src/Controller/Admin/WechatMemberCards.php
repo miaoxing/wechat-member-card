@@ -40,7 +40,7 @@ class WechatMemberCards extends BaseController
                 foreach ($cards as $card) {
                     $data[] = $card->toArray() + [
                             'status_name' => $card->getStatusName(),
-                            'source_name' => $card->getConstantValue('source', $card['source'], 'text')
+                            'source_name' => $card->getConstantValue('source', $card['source'], 'text'),
                         ];
                 }
 
