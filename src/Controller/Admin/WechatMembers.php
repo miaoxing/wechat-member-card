@@ -8,6 +8,5 @@ class WechatMembers extends BaseController
 {
     public function indexAction()
     {
-        
     }
 }
