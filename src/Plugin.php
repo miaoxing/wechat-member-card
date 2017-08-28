@@ -33,7 +33,7 @@ class Plugin extends BasePlugin
             return;
         }
 
-        $member = wei()->member()->curApp()->notDeleted()->findOrInit(['user_id' => $user['id']]);
+        $member = wei()->member->getMember();
         if ($member) {
             return;
         }
