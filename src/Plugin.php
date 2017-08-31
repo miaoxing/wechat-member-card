@@ -21,6 +21,38 @@ class Plugin extends BasePlugin
     protected $description = '微信会员卡';
 
     /**
+     * 创建会员卡之前，附加会员卡的资料
+     *
+     * @param WechatCardRecord $card
+     * @param $data
+     */
+    public function onPreWechatCreateCard(WechatCardRecord $card, &$data)
+    {
+        if ($card['type'] != WechatCardRecord::TYPE_MEMBER_CARD) {
+            return;
+        }
+
+        $data['member_card']['background_pic_url'] = $card['background_pic_url'];
+        $data['member_card']['pay_info'] = $card['pay_info'];
+        $data += [
+            'supply_bonus' => (bool) $card['supply_bonus'],
+            'supply_balance' => (bool) $card['supply_balance'],
+            'prerogative' => $card['detail'],
+            'auto_activate' => $card['activate_type'] == WechatCardRecord::ACTIVATE_TYPE_AUTO,
+            'activate_url' => $card['activate_type'] == WechatCardRecord::ACTIVATE_TYPE_URL ?
+                wei()->linkTo->getFullUrl($card['activate_link_to']) : '',
+            'custom_cell' => $card->getWechatCustomCell(),
+            'bonus_rule' => $card->getWechatBonusRule(),
+            'discount' => $card->getWechatDiscount(),
+        ];
+    }
+
+    public function onPreWechatUpdateCard()
+    {
+        
+    }
+
+    /**
      * 用户领取会员卡
      *
      * @param WeChatApp $app

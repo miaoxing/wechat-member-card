@@ -5,13 +5,6 @@ use Miaoxing\WechatCard\Service\WechatCardRecord;
 $view->layout();
 ?>
 
-<style>
-  /* 让 */
-  .btn-file {
-    overflow: visible;
-  }
-</style>
-
 <?= $block('header-actions') ?>
 <a class="btn btn-default" href="<?= $url('admin/wechat-member-cards') ?>">返回列表</a>
 <?= $block->end() ?>
@@ -189,13 +182,13 @@ $view->layout();
 
               <div class="m-t">
                 <label>时间：</label>
-                <input type="text" class="text-center t-2" name="time_limit[times][]">
+                <input type="text" class="text-center t-2" name="time_limit[times][1][begin]">
                 至
-                <input type="text" class="text-center t-2" name="time_limit[times][]">
+                <input type="text" class="text-center t-2" name="time_limit[times][1][end]">
                 &nbsp;&nbsp;
-                <input type="text" class="text-center t-2" name="time_limit[times][]">
+                <input type="text" class="text-center t-2" name="time_limit[times][2][begin]">
                 至
-                <input type="text" class="text-center t-2" name="time_limit[times][]">
+                <input type="text" class="text-center t-2" name="time_limit[times][2][end]">
 
                 <div class="m-t m-l-lg help-text">请使用24小时制输入时间，格式如11:00至14:30，留空表示全天。</div>
               </div>
@@ -702,7 +695,7 @@ $view->layout();
 
             <div class="radio">
               <label>
-                <input type="radio" value="3" checked name="shop_type" class="js-shop-type">
+                <input type="radio" value="1" checked name="shop_type" class="js-shop-type">
                 全部门店适用
               </label>
             </div>
@@ -710,7 +703,7 @@ $view->layout();
             <!-- 暂未实现 -->
             <div class="radio hide">
               <label>
-                <input type="radio" value="1" name="shop_type" id="shop-type" class="js-shop-type">
+                <input type="radio" value="2" name="shop_type" id="shop-type" class="js-shop-type">
                 指定门店适用
               </label>
 
@@ -736,7 +729,7 @@ $view->layout();
 
             <div class="radio">
               <label>
-                <input type="radio" value="2" name="shop_type" class="js-shop-type">
+                <input type="radio" value="0" name="shop_type" class="js-shop-type">
                 无指定门店
               </label>
             </div>
@@ -952,12 +945,12 @@ $view->layout();
           </div>
 
           <div class="form-group">
-            <label class="col-lg-2 control-label" for="custom-cell-url">
+            <label class="col-lg-2 control-label" for="custom-cell-link-to">
               入口跳转链接
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" id="custom-cell-url" data-name="custom_cell[url]"></p>
+              <p class="js-link-to form-control-static" id="custom-cell-link-to" data-name="custom_cell[link_to]"></p>
             </div>
           </div>
 
@@ -974,7 +967,7 @@ $view->layout();
         </div>
       </fieldset>
 
-      <input type="hidden" id="id" name="id">
+      <input class="js-id" type="hidden" id="id" name="id">
       <input type="hidden" id="type" name="type" value="<?= WechatCardRecord::TYPE_MEMBER_CARD ?>">
 
       <div class="clearfix form-actions form-group">
