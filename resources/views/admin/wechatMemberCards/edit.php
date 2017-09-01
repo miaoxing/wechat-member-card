@@ -204,7 +204,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox-inline">
               <label>
-                <input name="supply_score" type="hidden" value="0" data-ignore>
+                <input name="supply_score" type="hidden" value="0" data-populate-ignore>
                 <input class="js-supply-score js-toggle-display" id="supply-score" name="supply_score" type="checkbox"
                   value="1" data-target=".js-supply-score-groups" data-value=":checked">
                 积分优惠
@@ -214,7 +214,7 @@ $view->layout();
             </div>
             <div class="checkbox-inline">
               <label>
-                <input name="supply_discount" type="hidden" value="0" data-ignore="true">
+                <input name="supply_discount" type="hidden" value="0" data-populate-ignore>
                 <input class="js-supply-discount js-toggle-display" id="supply-discount" name="supply_discount"
                   type="checkbox" value="1" data-target=".js-supply-discount-groups" data-value=":checked">
                 折扣优惠
@@ -386,7 +386,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input name="supply_bonus" type="hidden" value="0" data-ignore>
+                <input name="supply_bonus" type="hidden" value="0" data-populate-ignore>
                 <input class="js-field js-supply-bonus js-toggle-display" id="supply-bonus" name="supply_bonus"
                   type="checkbox" value="1" data-target=".js-supply-bonus-groups" data-value=":checked">
                 积分
@@ -434,7 +434,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input name="supply_balance" type="hidden" value="0" data-ignore>
+                <input name="supply_balance" type="hidden" value="0" data-populate-ignore>
                 <input class="js-field js-supply-balance js-toggle-display" id="supply-balance" name="supply_balance"
                   type="checkbox" value="1" data-target=".js-supply-balance-groups" data-value=":checked">
                 余额（支持储值）
@@ -472,7 +472,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input name="custom_field<?= $i ?>[enable]" type="hidden" value="0" data-ignore>
+                <input name="custom_field<?= $i ?>[enable]" type="hidden" value="0" data-populate-ignore>
                 <input class="js-field js-toggle-display js-custom-field<?= $i ?>-enable" id="custom-field<?= $i ?>-enable" name="custom_field<?= $i ?>[enable]"
                   type="checkbox" value="1" data-target=".js-custom-field<?= $i ?>-enable-groups" data-value=":checked">
                 自定义信息类目<?= $i ?>
@@ -575,7 +575,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input type="hidden" value="0" name="can_share" data-ignore>
+                <input type="hidden" value="0" name="can_share" data-populate-ignore>
                 <input type="checkbox" value="1" name="can_share" id="can_share">
                 用户可以分享领券链接
               </label>
@@ -679,6 +679,44 @@ $view->layout();
             <input type="text" class="form-control" name="notice" id="notice">
           </div>
           <label for="notice" class="col-lg-6 help-text">建议引导用户到店出示卡券，由店员完成核销操作</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="is-swipe-card">
+          </label>
+
+          <div class="col-lg-4">
+            <div class="checkbox">
+              <label>
+                <input name="pay_info[swipe_card][is_swipe_card]" type="hidden" value="0" data-populate-ignore>
+                <input type="checkbox" name="pay_info[swipe_card][is_swipe_card]" id="is-swipe-card" value="1">
+                支持微信支付刷卡
+              </label>
+            </div>
+
+          </div>
+          <label for="is-swipe-card" class="col-lg-6 help-text">用户点击快速买单后即可拉出刷卡界面进行支付</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-lg-2 control-label" for="use-dynamic-code">
+          </label>
+
+          <div class="col-lg-4">
+            <div class="checkbox">
+              <label>
+                <input name="use_dynamic_code" type="hidden" value="0" data-populate-ignore>
+                <input type="checkbox" name="use_dynamic_code" id="use-dynamic-code" value="1">
+                支持动态码
+              </label>
+            </div>
+
+          </div>
+          <label for="is-swipe-card" class="col-lg-6 help-text">
+            <a href="https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1478005752&version=12020810&lang=zh_CN&platform=2">
+              详情请参见微信文档
+            </a>
+          </label>
         </div>
       </fieldset>
 
