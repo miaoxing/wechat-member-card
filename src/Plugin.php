@@ -49,7 +49,6 @@ class Plugin extends BasePlugin
 
     public function onPreWechatUpdateCard()
     {
-        
     }
 
     /**
