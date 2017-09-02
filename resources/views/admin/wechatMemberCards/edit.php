@@ -713,8 +713,9 @@ $view->layout();
 
           </div>
           <label for="is-swipe-card" class="col-lg-6 help-text">
-            <a href="https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1478005752&version=12020810&lang=zh_CN&platform=2">
-              详情请参见微信文档
+            详情请参见<a href="https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1478005752&version=12020810&lang=zh_CN&platform=2"
+              target="_blank">
+              微信文档
             </a>
           </label>
         </div>
