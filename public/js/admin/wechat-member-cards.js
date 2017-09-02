@@ -15,6 +15,7 @@ define([
   var DATE_TYPE_FIX_TIME_RANGE = 1;
   var DATE_TYPE_FIX_TERM = 2;
   var MAX_CUSTOM_FIELDS = 3;
+  var DELAY_SLOW = 5000;
 
   var WechatMemberCards = function () {
     this.$el = $('body');
@@ -64,10 +65,28 @@ define([
             return false;
           }
 
+          // 编辑时，仅支持扩大有效期的固定日期
+          var data = that.data;
+          var dateInfo = data.date_info;
+          if (data.wechat_id // 编辑状态
+            && parseInt(dateInfo.type, 10) === DATE_TYPE_FIX_TIME_RANGE
+            && (moment(dateInfo.begin_time) < moment(that.$('.js-start-date').val())
+              || moment(dateInfo.end_time) > moment(that.$('.js-end-date').val())
+            )
+          ) {
+            that.$('.js-date-range').focus();
+            $.err('固定日期的范围应该大于 ' + dateInfo.begin_time + ' ~ ' + dateInfo.end_time, DELAY_SLOW);
+            return false;
+          }
+
           return true;
         },
         success: function (ret) {
           $.msg(ret, function () {
+            if (ret.data && ret.data.id) {
+              that.$('.js-id').val(ret.data.id);
+            }
+
             if (ret.code === 1) {
               window.location = $.url('admin/wechat-member-cards');
             }
@@ -75,6 +94,7 @@ define([
         }
       })
       .validate();
+
     if (data.date_info.begin_time != null && data.date_info.begin_time != '0000-00-00 00:00:00') {
       this.$('.js-date-range').val(data.date_info.begin_time.substr(0, 10) + ' ~ ' + data.date_info.end_time.substr(0, 10));
     }
@@ -84,6 +104,8 @@ define([
     $.each(data.text_image_list, function (i, row) {
       that.addArticleItem(row);
     });
+
+    this.changeCustomField();
   };
 
   WechatMemberCards.prototype.initFormEvents = function () {
@@ -114,8 +136,8 @@ define([
       });
 
     // 五个类目最多选择三个
-    this.$('.js-field').change(function () {
-      that.$('.js-field:unchecked').prop('disabled', that.$('.js-field:checked').length >= MAX_CUSTOM_FIELDS);
+    this.$('.js-custom-field').change(function () {
+      that.changeCustomField();
     });
 
     // 选中某个值，显示/隐藏某区域
@@ -148,6 +170,10 @@ define([
         }
       });
     });
+  };
+
+  WechatMemberCards.prototype.changeCustomField = function () {
+    this.$('.js-custom-field.js-editable:unchecked').prop('disabled', this.$('.js-custom-field:checked').length >= MAX_CUSTOM_FIELDS);
   };
 
   WechatMemberCards.prototype.changeDateInfoType = function (type) {

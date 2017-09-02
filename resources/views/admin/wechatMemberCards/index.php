@@ -105,7 +105,10 @@
           data: 'source_name'
         },
         {
-          data: 'status_name'
+          data: 'status_name',
+          render: function (data, type, full) {
+            return full.audit == 2 ? (data + '：' + full.audit_message) : data;
+          }
         },
         {
           data: 'id',
@@ -121,16 +124,6 @@
 
     $('#search-form').update(function () {
       recordTable.reload($(this).serialize(), false);
-    });
-
-    // 点击创建卡券
-    $('#confirm-add').click(function () {
-      var type = $('.type:checked').val();
-      if (type === undefined) {
-        $.warning('请选择卡券类型');
-      } else {
-        window.location = $.url('admin/cards/new', {type: type});
-      }
     });
 
     // 投放

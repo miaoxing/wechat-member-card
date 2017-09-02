@@ -25,8 +25,11 @@ $view->layout();
           <div class="col-lg-4">
             <input type="text" class="form-control" name="brand_name" id="brand-name" data-rule-required="true">
           </div>
-          <label class="col-lg-6 help-text" for="brand-name">提供服务的商户名</label>
+          <label class="col-lg-6 help-text" for="brand-name">
+            提供服务的商户名
+          </label>
         </div>
+
         <div class="form-group">
           <label class="col-lg-2 control-label" for="logo-url">
             <span class="text-warning">*</span>
@@ -35,7 +38,7 @@ $view->layout();
 
           <div class="js-upload-container col-lg-4">
             <input type="file" class="js-logo-file"/>
-            <input type="hidden" id="logo-url" name="logo_url" class="js-logo-url js-image-url"/>
+            <input type="hidden" id="logo-url" name="logo_url" class="js-editable js-logo-url js-image-url"/>
           </div>
 
           <label class="col-lg-6 help-text">
@@ -50,11 +53,11 @@ $view->layout();
 
           <div class="col-lg-4">
             <label class="radio-inline">
-              <input type="radio" class="js-cover-type js-toggle-display" name="cover_type" value="0" checked="checked"
+              <input type="radio" class="js-editable js-cover-type js-toggle-display" name="cover_type" value="0" checked="checked"
                 data-value=":checked" data-target=".js-cover-type-image" data-reverse-target=".js-cover-type-color">图片
             </label>
             <label class="radio-inline">
-              <input type="radio" class="js-cover-type js-toggle-display" name="cover_type" value="1" data-value=":checked"
+              <input type="radio" class="js-editable js-cover-type js-toggle-display" name="cover_type" value="1" data-value=":checked"
                 data-target=".js-cover-type-color" data-reverse-target=".js-cover-type-image"> 颜色
             </label>
 
@@ -63,11 +66,11 @@ $view->layout();
                 href="https://mp.weixin.qq.com/cgi-bin/readtemplate?t=cardticket/card_cover_tmpl&type=info&lang=zh_CN"
                 target="_blank">微信图片规范</a> 上传</p>
               <input type="file" class="js-background-pic-file"/>
-              <input type="hidden" name="background_pic_url" class="js-background-pic-url js-image-url"/>
+              <input type="hidden" name="background_pic_url" class="js-editable js-background-pic-url js-image-url">
             </div>
 
             <div class="js-cover-type-color m-t display-none">
-              <select name="color" id="color" class="js-color form-control">
+              <select name="color" id="color" class="js-editable js-color form-control">
                 <?php foreach (wei()->wechatCard->getColors() as $color => $wechatColor) : ?>
                   <option value="<?= $color ?>" data-color="<?= $color ?>"><?= $color ?></option>
                 <?php endforeach ?>
@@ -83,9 +86,12 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <input type="text" class="form-control" name="title" id="title" data-rule-required="true">
+            <input type="text" class="js-editable form-control" name="title" id="title" data-rule-required="true">
           </div>
-          <label class="col-lg-6 help-text" for="title">建议会员卡标题包含商户名或服务内容，如腾讯会员黄钻尊享卡</label>
+          <label class="col-lg-6 help-text" for="title">
+            <span class="js-edit-tips text-warning display-none">修改需审核</span>
+            建议会员卡标题包含商户名或服务内容，如腾讯会员黄钻尊享卡
+          </label>
         </div>
 
         <div class="form-group">
@@ -93,23 +99,26 @@ $view->layout();
             有效期
           </label>
 
-          <div class="col-lg-4" rel="date_info">
+          <div class="col-lg-4">
             <div class="radio p-t-0">
               <label>
-                <input type="radio" class="js-date-info-type" name="date_info[type]" id="date-info-type" rel="type" value="1">
+                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type" value="1">
                 固定日期
               </label>
               <input type="text" class="js-date-range t-11 text-center" placeholder="请选择日期范围">
-              <input type="hidden" class="js-start-date" name="date_info[begin_time]" rel="begin_time">
-              <input type="hidden" class="js-end-date" name="date_info[end_time]" rel="end_time">
+              <input type="hidden" class="js-start-date" name="date_info[begin_time]">
+              <input type="hidden" class="js-end-date" name="date_info[end_time]">
             </div>
             <div class="radio">
               <label>
-                <input type="radio" class="js-date-info-type" name="date_info[type]" id="date-info-type-2" rel="type" value="2" checked>
+                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type-2" value="2" checked>
                 永久有效
               </label>
             </div>
           </div>
+          <label class="js-edit-tips col-lg-6 help-text" for="date-info-type">
+            编辑时，仅支持扩大固定日期
+          </label>
         </div>
 
         <div class="form-group">
@@ -234,10 +243,10 @@ $view->layout();
 
             <div class="col-lg-4">
               每消费
-              <input type="text" id="cost-money-unit" class="t-3 text-center" name="bonus_rule[cost_money_unit]"
+              <input type="text" id="cost-money-unit" class="js-editable t-3 text-center" name="bonus_rule[cost_money_unit]"
                 data-rule-required="true" data-rule-number="true" data-rule-min="0">
               元，赠送
-              <input type="text" class="t-3 text-center" name="bonus_rule[increase_bonus]" data-rule-required="true"
+              <input type="text" class="js-editable t-3 text-center" name="bonus_rule[increase_bonus]" data-rule-required="true"
                 data-rule-number="true" data-rule-min="0">
               积分
             </div>
@@ -249,7 +258,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" id="max-increase-bonus" class="t-3 text-center" name="bonus_rule[max_increase_bonus]" data-rule-number="true" data-rule-min="0">
+              <input type="text" id="max-increase-bonus" class="js-editable t-3 text-center" name="bonus_rule[max_increase_bonus]" data-rule-number="true" data-rule-min="0">
               积分
             </div>
 
@@ -264,7 +273,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" id="init-increase-bonus" class="t-3 text-center" name="bonus_rule[init_increase_bonus]" data-rule-number="true" data-rule-min="0">
+              <input type="text" id="init-increase-bonus" class="js-editable t-3 text-center" name="bonus_rule[init_increase_bonus]" data-rule-number="true" data-rule-min="0">
               积分
             </div>
 
@@ -281,9 +290,9 @@ $view->layout();
 
             <div class="col-lg-4">
               每使用
-              <input type="text" id="cost-bonus-unit" class="t-3 text-center" name="bonus_rule[cost_bonus_unit]" data-rule-required="true" data-rule-number="true" data-rule-min="0">
+              <input type="text" id="cost-bonus-unit" class="js-editable t-3 text-center" name="bonus_rule[cost_bonus_unit]" data-rule-required="true" data-rule-number="true" data-rule-min="0">
               积分，抵扣
-              <input type="text" class="t-3 text-center" name="bonus_rule[reduce_money]" data-rule-required="true" data-rule-number="true" data-rule-min="0">
+              <input type="text" class="js-editable t-3 text-center" name="bonus_rule[reduce_money]" data-rule-required="true" data-rule-number="true" data-rule-min="0">
               元
             </div>
           </div>
@@ -295,9 +304,9 @@ $view->layout();
 
             <div class="col-lg-4">
               订单满
-              <input type="text" id="least-money-to-use-bonus" class="t-3 text-center" name="bonus_rule[least_money_to_use_bonus]" data-rule-number="true" data-rule-min="0">
+              <input type="text" id="least-money-to-use-bonus" class="js-editable t-3 text-center" name="bonus_rule[least_money_to_use_bonus]" data-rule-number="true" data-rule-min="0">
               元可用，单笔上限
-              <input type="text" class="t-3 text-center" name="bonus_rule[max_reduce_bonus]" data-rule-number="true" data-rule-min="0">
+              <input type="text" class="js-editable t-3 text-center" name="bonus_rule[max_reduce_bonus]" data-rule-number="true" data-rule-min="0">
               积分
             </div>
           </div>
@@ -311,12 +320,15 @@ $view->layout();
 
             <div class="col-lg-4">
               <div class="input-group">
-                <input type="text" class="form-control" name="discount" id="discount">
+                <input type="text" class="js-editable form-control" name="discount" id="discount">
                 <span class="input-group-addon">折</span>
               </div>
             </div>
 
-            <label class="control-label help-text">请填写1-9.9之间的数字，精确到小数点后1位</label>
+            <label class="control-label help-text">
+              <span class="js-edit-tips text-warning display-none">修改需提审</span>
+              请填写1-9.9之间的数字，精确到小数点后1位
+            </label>
           </div>
         </div>
       </fieldset>
@@ -331,7 +343,7 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <textarea class="form-control" name="detail" id="detail" rows="4" data-rule-required="true"></textarea>
+            <textarea class="js-editable form-control" name="detail" id="detail" rows="4" data-rule-required="true"></textarea>
           </div>
 
           <label class="col-lg-6 help-text" for="detail">
@@ -345,10 +357,11 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <textarea class="form-control" name="description" id="description" rows="4"></textarea>
+            <textarea class="js-editable form-control" name="description" id="description" rows="4"></textarea>
           </div>
 
           <label class="col-lg-6 help-text" for="description">
+            <span class="js-edit-tips text-warning display-none">修改需审核</span>
             注：1、上文设置中，如已经填写“积分优惠”“折扣优惠”的内容，将会自动在用户会员卡详情展示，无需重复填写。2、建议填写其他注意事项，举例：积分不支持兑换现金
           </label>
         </div>
@@ -387,12 +400,16 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input name="supply_bonus" type="hidden" value="0" data-populate-ignore>
-                <input class="js-field js-supply-bonus js-toggle-display" id="supply-bonus" name="supply_bonus"
+                <input class="<?= $card['supply_bonus'] ? '' : 'js-editable' ?> js-custom-field js-supply-bonus js-toggle-display" id="supply-bonus" name="supply_bonus"
                   type="checkbox" value="1" data-target=".js-supply-bonus-groups" data-value=":checked">
                 积分
               </label>
             </div>
           </div>
+          <label class="help-text">
+            <span class="js-edit-tips text-warning display-none">修改需提审</span>
+            编辑时，仅支持增加，不支持取消该项
+          </label>
         </div>
 
         <div class="js-supply-bonus-groups display-none">
@@ -402,7 +419,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" data-name="bonus_link_to" id="bonus-link-to"></p>
+              <p class="js-editable js-link-to form-control-static" data-name="bonus_link_to" id="bonus-link-to"></p>
             </div>
             <label for="bonus-url" class="col-lg-6 help-text">仅适用于积分无法通过激活接口同步的情况下使用该字段。</label>
           </div>
@@ -413,7 +430,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <textarea type="text" class="form-control" name="bonus_rules" id="bonus-rules"></textarea>
+              <textarea type="text" class="js-editable form-control" name="bonus_rules" id="bonus-rules"></textarea>
             </div>
           </div>
 
@@ -423,7 +440,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <textarea type="text" class="form-control" name="bonus_cleared" id="bonus-cleared"></textarea>
+              <textarea type="text" class="js-editable form-control" name="bonus_cleared" id="bonus-cleared"></textarea>
             </div>
           </div>
           <hr>
@@ -435,12 +452,16 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input name="supply_balance" type="hidden" value="0" data-populate-ignore>
-                <input class="js-field js-supply-balance js-toggle-display" id="supply-balance" name="supply_balance"
+                <input class="<?= $card['supply_balance'] ? '' : 'js-editable' ?> js-custom-field js-supply-balance js-toggle-display" id="supply-balance" name="supply_balance"
                   type="checkbox" value="1" data-target=".js-supply-balance-groups" data-value=":checked">
                 余额（支持储值）
               </label>
             </div>
           </div>
+          <label class="help-text">
+            <span class="js-edit-tips text-warning display-none">修改需提审</span>
+            编辑时，仅支持增加，不支持取消该项
+          </label>
         </div>
 
         <div class="js-supply-balance-groups display-none">
@@ -450,7 +471,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <textarea class="form-control" name="balance_rules" id="balance-rules"></textarea>
+              <textarea class="js-editable form-control" name="balance_rules" id="balance-rules"></textarea>
             </div>
           </div>
 
@@ -460,7 +481,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" data-name="balance_link_to" id="balance-link-to"></p>
+              <p class="js-editable js-link-to form-control-static" data-name="balance_link_to" id="balance-link-to"></p>
             </div>
             <label for="balance-url" class="col-lg-6 help-text">仅适用于余额无法通过激活接口同步的情况下使用该字段。</label>
           </div>
@@ -473,7 +494,7 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input name="custom_field<?= $i ?>[enable]" type="hidden" value="0" data-populate-ignore>
-                <input class="js-field js-toggle-display js-custom-field<?= $i ?>-enable" id="custom-field<?= $i ?>-enable" name="custom_field<?= $i ?>[enable]"
+                <input class="js-editable js-custom-field js-toggle-display js-custom-field<?= $i ?>-enable" id="custom-field<?= $i ?>-enable" name="custom_field<?= $i ?>[enable]"
                   type="checkbox" value="1" data-target=".js-custom-field<?= $i ?>-enable-groups" data-value=":checked">
                 自定义信息类目<?= $i ?>
               </label>
@@ -488,7 +509,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <select class="js-toggle-display form-control" id="custom-field<?= $i ?>-name-type" name="custom_field<?= $i ?>[name_type]"
+              <select class="js-editable js-toggle-display form-control" id="custom-field<?= $i ?>-name-type" name="custom_field<?= $i ?>[name_type]"
                 data-value="FIELD_NAME_TYPE_CUSTOM" data-target=".js-custom-field<?= $i ?>-name-group">
                 <?php foreach (wei()->wechatCard->getFieldNameTypes() as $value => $name) : ?>
                   <option value="<?= $value ?>"><?= $name ?></option>
@@ -506,7 +527,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input class="form-control" id="custom-field<?= $i ?>-name" type="text" name="custom_field<?= $i ?>[name]">
+              <input class="js-editable form-control" id="custom-field<?= $i ?>-name" type="text" name="custom_field<?= $i ?>[name]">
             </div>
             <label for="custom-field<?= $i ?>-name" class="col-lg-6 help-text">
               自定义类目的值更改时，不会触发系统模板消息通知用户。
@@ -519,7 +540,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[url]"></p>
+              <p class="js-editable js-link-to form-control-static" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[url]"></p>
             </div>
           </div>
         </div>
@@ -534,7 +555,7 @@ $view->layout();
           <div class="col-lg-6">
             <div class="radio">
               <label>
-                <input class="js-toggle-display" id="activate-type" type="radio" name="activate_type" value="0" checked data-value=":checked" data-reverse-target=".js-activate-link-to">
+                <input class="js-editable js-toggle-display" id="activate-type" type="radio" name="activate_type" value="0" checked data-value=":checked" data-reverse-target=".js-activate-link-to">
                 自动激活
               </label>
               <label class="block text-muted">
@@ -545,7 +566,7 @@ $view->layout();
             <!-- 暂不支持 -->
             <div class="radio hide">
               <label>
-                <input class="js-toggle-display" type="radio" name="activate_type" value="1" data-value=":checked" data-reverse-target=".js-activate-link-to">
+                <input class="js-editable js-toggle-display" type="radio" name="activate_type" value="1" data-value=":checked" data-reverse-target=".js-activate-link-to">
                 一键激活
               </label>
               <label class="block text-muted">
@@ -555,13 +576,13 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input class="js-toggle-display" type="radio" name="activate_type" value="2" data-value=":checked" data-target=".js-activate-link-to">
+                <input class="js-editable js-toggle-display" type="radio" name="activate_type" value="2" data-value=":checked" data-target=".js-activate-link-to">
                 接口激活
               </label>
               <label class="block text-muted">
                 接口激活通常需要开发者开发用户填写资料的网页。详见微信文档
                 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025283" target="_blank">#6.1</a>
-                <p class="js-link-to js-activate-link-to form-control-static" id="activate-link-to" data-name="activate_link_to"></p>
+                <p class="js-editable js-link-to js-activate-link-to form-control-static" id="activate-link-to" data-name="activate_link_to"></p>
               </label>
             </div>
           </div>
@@ -576,7 +597,7 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input type="hidden" value="0" name="can_share" data-populate-ignore>
-                <input type="checkbox" value="1" name="can_share" id="can_share">
+                <input class="js-editable" type="checkbox" value="1" name="can_share" id="can_share">
                 用户可以分享领券链接
               </label>
             </div>
@@ -590,7 +611,7 @@ $view->layout();
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group hide">
           <label class="col-lg-2 control-label" for="can-give-friend">
             激活信息
           </label>
@@ -599,14 +620,14 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input type="hidden" value="0" name="can_give_friend">
-                <input type="checkbox" value="1" name="can_give_friend" id="can-give-friend">
+                <input class="js-editable" type="checkbox" value="1" name="can_give_friend" id="can-give-friend">
                 允许用户自主修改以上信息
               </label>
             </div>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="js-editable form-group">
           <label class="col-lg-2 control-label" for="code-type-0">
             销券方式
           </label>
@@ -614,7 +635,7 @@ $view->layout();
           <div class="col-lg-6">
             <div class="radio">
               <label>
-                <input type="radio" value="0" checked name="code_type" id="code-type-0">
+                <input class="js-editable" type="radio" value="0" checked name="code_type" id="code-type-0">
                 不显示code和条形码类型
               </label>
               <label class="block text-muted">
@@ -623,7 +644,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" value="1" name="code_type" id="code-type-1">
+                <input class="js-editable" type="radio" value="1" name="code_type" id="code-type-1">
                 仅卡号
               </label>
               <label class="block text-muted">
@@ -632,7 +653,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" value="3" name="code_type" id="code-type-3">
+                <input class="js-editable" type="radio" value="3" name="code_type" id="code-type-3">
                 二维码
               </label>
               <label class="block text-muted">
@@ -641,7 +662,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" value="2" name="code_type" id="code-type-2">
+                <input class="js-editable" type="radio" value="2" name="code_type" id="code-type-2">
                 条形码
               </label>
               <label class="block text-muted">
@@ -650,7 +671,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" value="4" name="code_type" id="code-type-4">
+                <input class="js-editable" type="radio" value="4" name="code_type" id="code-type-4">
                 二维码，不显示卡号
               </label>
               <label class="block text-muted">
@@ -659,7 +680,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" value="5" name="code_type" id="code-type-5">
+                <input class="js-editable" type="radio" value="5" name="code_type" id="code-type-5">
                 条形码，不显示卡号
               </label>
               <label class="block text-muted">
@@ -669,7 +690,7 @@ $view->layout();
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="js-editable form-group">
           <label class="col-lg-2 control-label" for="notice">
             <span class="text-warning">*</span>
             操作提示
@@ -689,7 +710,7 @@ $view->layout();
             <div class="checkbox">
               <label>
                 <input name="pay_info[swipe_card][is_swipe_card]" type="hidden" value="0" data-populate-ignore>
-                <input type="checkbox" name="pay_info[swipe_card][is_swipe_card]" id="is-swipe-card" value="1">
+                <input class="js-editable" id="is-swipe-card" type="checkbox" name="pay_info[swipe_card][is_swipe_card]" value="1">
                 支持微信支付刷卡
               </label>
             </div>
@@ -724,7 +745,7 @@ $view->layout();
       <fieldset>
         <legend class="grey bigger-130">服务信息</legend>
 
-        <div class="form-group">
+        <div class="js-editable form-group">
           <label class="col-lg-2 control-label" for="shop-type">
             适用门店
           </label>
@@ -734,7 +755,7 @@ $view->layout();
 
             <div class="radio">
               <label>
-                <input type="radio" value="1" checked name="shop_type" class="js-shop-type">
+                <input type="radio" value="1" checked name="shop_type" class="js-editable js-shop-type">
                 全部门店适用
               </label>
             </div>
@@ -742,7 +763,7 @@ $view->layout();
             <!-- 暂未实现 -->
             <div class="radio hide">
               <label>
-                <input type="radio" value="2" name="shop_type" id="shop-type" class="js-shop-type">
+                <input type="radio" value="2" name="shop_type" id="shop-type" class="js-editable js-shop-type">
                 指定门店适用
               </label>
 
@@ -768,7 +789,7 @@ $view->layout();
 
             <div class="radio">
               <label>
-                <input type="radio" value="0" name="shop_type" class="js-shop-type">
+                <input type="radio" value="0" name="shop_type" class="js-editable js-shop-type">
                 无指定门店
               </label>
             </div>
@@ -785,7 +806,7 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <input type="text" class="form-control" name="center_title" id="center-title">
+            <input type="text" class="js-editable form-control" name="center_title" id="center-title">
           </div>
           <label for="centerTitle" class="col-lg-6 help-text">仅在卡券状态正常(可以核销)时显示</label>
         </div>
@@ -796,7 +817,7 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <input type="text" class="form-control" name="center_sub_title" id="center-sub-title">
+            <input type="text" class="js-editable form-control" name="center_sub_title" id="center-sub-title">
           </div>
 
         </div>
@@ -830,7 +851,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="service_phone" id="service-phone">
+              <input type="text" class="js-editable form-control" name="service_phone" id="service-phone">
             </div>
             <label for="service-phone" class="col-lg-6 help-text">手机或固话</label>
           </div>
@@ -882,34 +903,34 @@ $view->layout();
         </legend>
 
         <div class="js-collapse collapse" id="custom-url-collapse">
-          <div class="form-group">
+          <div class="js-editable form-group">
             <label class="col-lg-2 control-label" for="custom-url-name">
               自定义入口名称
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="custom_url_name" id="custom-url-name">
+              <input type="text" class="js-editable form-control" name="custom_url_name" id="custom-url-name">
             </div>
             <label for="customUrlName" class="col-lg-6 help-text">长度限制在5个汉字内,如"立即使用","在线预约"</label>
           </div>
 
-          <div class="form-group">
+          <div class="js-editable form-group">
             <label class="col-lg-2 control-label" for="custom-link-to">
               自定义入口链接
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" id="custom-link-to" data-name="custom_link_to"></p>
+              <p class="js-editable js-link-to form-control-static" id="custom-link-to" data-name="custom_link_to"></p>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="js-editable form-group">
             <label class="col-lg-2 control-label" for="custom-url-sub-title">
               入口右侧的提示
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="custom_url_sub_title" id="custom-url-sub-title">
+              <input type="text" class="js-editable form-control" name="custom_url_sub_title" id="custom-url-sub-title">
             </div>
             <label for="customUrlSubTitle" class="col-lg-6 help-text">长度限制在6个汉字内</label>
           </div>
@@ -933,7 +954,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="promotion_url_name" id="promotion-url-name">
+              <input type="text" class="js-editable form-control" name="promotion_url_name" id="promotion-url-name">
             </div>
             <label for="promotion-url-name" class="col-lg-6 help-text">长度限制在5个汉字内,如"再次购买"</label>
           </div>
@@ -954,7 +975,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="promotion_url_sub_title" id="promotion-url-sub-title">
+              <input type="text" class="js-editable form-control" name="promotion_url_sub_title" id="promotion-url-sub-title">
             </div>
             <label for="promotion-url-sub-title" class="col-lg-6 help-text">长度限制在6个汉字内</label>
           </div>
@@ -978,7 +999,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="custom_cell[name]" id="custom-cell-name">
+              <input type="text" class="js-editable form-control" name="custom_cell[name]" id="custom-cell-name">
             </div>
             <label for="custom-cell-name" class="col-lg-6 help-text">长度限制在5个汉字内，激活后显示</label>
           </div>
@@ -989,7 +1010,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-link-to form-control-static" id="custom-cell-link-to" data-name="custom_cell[link_to]"></p>
+              <p class="js-editable js-link-to form-control-static" id="custom-cell-link-to" data-name="custom_cell[link_to]"></p>
             </div>
           </div>
 
@@ -999,7 +1020,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <input type="text" class="form-control" name="custom_cell[tips]" id="custom-cell-tips">
+              <input type="text" class="js-editable form-control" name="custom_cell[tips]" id="custom-cell-tips">
             </div>
             <label for="custom-cell-tips" class="col-lg-6 help-text">长度限制在6个汉字内</label>
           </div>
@@ -1097,6 +1118,12 @@ $view->layout();
 
 <?= $block('js') ?>
 <script>
+  var edit = <?= json_encode($isEdit) ?>;
+  if (edit) {
+    $('.js-edit-tips').show();
+    $('.js-card-form :input:not(.js-editable):not([type=submit])').prop('disabled', true);
+  }
+
   require(['plugins/wechat-member-card/js/admin/wechat-member-cards'], function (card) {
     card.formAction({
       data: <?= $card->toJson() ?>
