@@ -32,23 +32,19 @@ class Plugin extends BasePlugin
             return;
         }
 
-        $data['member_card']['background_pic_url'] = $card['background_pic_url'];
-        $data['member_card']['pay_info'] = $card['pay_info'];
-        $data += [
-            'supply_bonus' => (bool) $card['supply_bonus'],
-            'supply_balance' => (bool) $card['supply_balance'],
-            'prerogative' => $card['detail'],
-            'auto_activate' => $card['activate_type'] == WechatCardRecord::ACTIVATE_TYPE_AUTO,
-            'activate_url' => $card['activate_type'] == WechatCardRecord::ACTIVATE_TYPE_URL ?
-                wei()->linkTo->getFullUrl($card['activate_link_to']) : '',
-            'custom_cell' => $card->getWechatCustomCell(),
-            'bonus_rule' => $card->getWechatBonusRule(),
-            'discount' => $card->getWechatDiscount(),
-        ];
+        $data = wei()->wechatMemberCard->addWechatCardData($card, $data);
     }
 
-    public function onPreWechatUpdateCard()
+    public function onPreWechatUpdateCard(WechatCardRecord $card, &$data, $req)
     {
+        if ($card['type'] != WechatCardRecord::TYPE_MEMBER_CARD) {
+            return;
+        }
+
+        $data = wei()->wechatMemberCard->addWechatCardData($card, $data);
+        $data = wei()->wechatCard->filterUnchangedAuditData($card, $data, [
+            'supply_bonus', 'supply_balance', 'discount'
+        ]);
     }
 
     /**

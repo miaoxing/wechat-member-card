@@ -326,7 +326,7 @@ $view->layout();
             </div>
 
             <label class="control-label help-text">
-              <span class="js-edit-tips text-warning display-none">修改需提审</span>
+              <span class="js-edit-tips text-warning display-none">修改需审核</span>
               请填写1-9.9之间的数字，精确到小数点后1位
             </label>
           </div>
@@ -377,8 +377,10 @@ $view->layout();
             <div class="js-article-list">
 
             </div>
-            <hr class="m-t-0">
-            <a href="javascript:;" class="js-add-article">添加图文</a>
+            <div class="js-add-article">
+              <hr class="m-t-0">
+              <a href="javascript:;">添加图文</a>
+            </div>
           </div>
 
           <label class="col-lg-6 help-text" for="description">
@@ -407,7 +409,7 @@ $view->layout();
             </div>
           </div>
           <label class="help-text">
-            <span class="js-edit-tips text-warning display-none">修改需提审</span>
+            <span class="js-edit-tips text-warning display-none">修改需审核</span>
             编辑时，仅支持增加，不支持取消该项
           </label>
         </div>
@@ -459,7 +461,7 @@ $view->layout();
             </div>
           </div>
           <label class="help-text">
-            <span class="js-edit-tips text-warning display-none">修改需提审</span>
+            <span class="js-edit-tips text-warning display-none">修改需审核</span>
             编辑时，仅支持增加，不支持取消该项
           </label>
         </div>
@@ -540,7 +542,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[url]"></p>
+              <p class="js-editable js-link-to form-control-static" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[link_to]"></p>
             </div>
           </div>
         </div>
@@ -1027,7 +1029,7 @@ $view->layout();
         </div>
       </fieldset>
 
-      <input class="js-id" type="hidden" id="id" name="id">
+      <input class="js-editable js-id" type="hidden" id="id" name="id">
       <input type="hidden" id="type" name="type" value="<?= WechatCardRecord::TYPE_MEMBER_CARD ?>">
 
       <div class="clearfix form-actions form-group">
@@ -1106,24 +1108,21 @@ $view->layout();
 <script class="js-article-item-tpl" type="text/html">
   <div class="js-article-item">
     <div class="js-upload-container">
-    <input type="file" class="js-article-url">
+    <input type="file" class="js-article-url" <%= disable ? 'disabled' : '' %>>
     <input type="hidden" name="text_image_list[<%= id %>][image_url]" class="js-image-url" value="<%= image_url %>">
     </div>
     <textarea class="form-control m-t" name="text_image_list[<%= id %>][text]" rows="4" data-rule-required="true"
       placeholder="图文内容建议上传商品、服务、环境等优质图片，并辅之以简单描述"><%= text %></textarea>
-    <a class="js-remove-article pull-right m-y" href="javascript:;">删除</a>
-    <div class="clearfix"></div>
+    <% if (!disable) { %>
+      <div class="m-y text-right">
+        <a class="js-remove-article" href="javascript:;">删除</a>
+      </div>
+    <% } %>
   </div>
 </script>
 
 <?= $block('js') ?>
 <script>
-  var edit = <?= json_encode($isEdit) ?>;
-  if (edit) {
-    $('.js-edit-tips').show();
-    $('.js-card-form :input:not(.js-editable):not([type=submit])').prop('disabled', true);
-  }
-
   require(['plugins/wechat-member-card/js/admin/wechat-member-cards'], function (card) {
     card.formAction({
       data: <?= $card->toJson() ?>

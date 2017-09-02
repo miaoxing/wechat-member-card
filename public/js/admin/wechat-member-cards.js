@@ -106,6 +106,13 @@ define([
     });
 
     this.changeCustomField();
+
+    // 编辑状态，显示编辑提醒，禁用不可编辑的控件
+    if (data.wechat_id) {
+      this.$('.js-add-article').hide();
+      this.$('.js-edit-tips').show();
+      this.$('.js-card-form :input:not(.js-editable):not([type=submit])').prop('disabled', true);
+    }
   };
 
   WechatMemberCards.prototype.initFormEvents = function () {
@@ -147,6 +154,7 @@ define([
   WechatMemberCards.prototype.addArticleItem = function (data) {
     data = data || {};
     data.id = data.id || $.guid++;
+    data.disable = !!this.data.wechat_id;
 
     var $tpl = $(this.$articleItemTpl(data));
 
