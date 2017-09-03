@@ -62,6 +62,7 @@ class Plugin extends BasePlugin
 
         $member = wei()->member->getMember();
         if ($member) {
+            $this->logger->info('用户已有会员卡', $app->getAttrs());
             return;
         }
 
@@ -84,6 +85,7 @@ class Plugin extends BasePlugin
             'outer_str' => $app->getAttr('OuterStr'),
             'level' => wei()->setting->getValue('member.init_level'),
             'score' => (int) $card['bonus_rule']['init_increase_bonus'],
+            'total_score' => (int) $card['bonus_rule']['init_increase_bonus'],
         ]);
     }
 }
