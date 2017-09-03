@@ -82,6 +82,8 @@ class Plugin extends BasePlugin
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
             'card_code' => $app->getAttr('UserCardCode'),
             'outer_str' => $app->getAttr('OuterStr'),
+            'level' => wei()->setting->getValue('member.init_level'),
+            'score' => (int) $card['bonus_rule']['init_increase_bonus'],
         ]);
     }
 }
