@@ -43,7 +43,7 @@ class Plugin extends BasePlugin
 
         $data = wei()->wechatMemberCard->addWechatCardData($card, $data);
         $data = wei()->wechatCard->filterUnchangedAuditData($card, $data, [
-            'supply_bonus', 'supply_balance', 'discount'
+            'supply_bonus', 'supply_balance', 'discount',
         ]);
     }
 
@@ -66,6 +66,7 @@ class Plugin extends BasePlugin
         ]);
         if (!$member->isNew()) {
             $this->logger->info('用户已有会员卡', $app->getAttrs());
+
             return;
         }
 
