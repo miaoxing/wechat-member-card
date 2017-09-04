@@ -79,11 +79,14 @@ class Plugin extends BasePlugin
 
         /** @var MemberRecord $member */
         $member->save([
-            'wechat_card_id' => $card['wechat_id'],
+            'card_id' => $card['id'],
+            'card_wechat_id' => $card['card_wechat_id'],
+            'code' => $app->getAttr('UserCardCode'),
+            'membership_number' => $app->getAttr('UserCardCode'), // TODO 是否为同一个
+            'wechat_open_id' => $user['wechatOpenId'],
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
-            'card_code' => $app->getAttr('UserCardCode'),
             'outer_str' => $app->getAttr('OuterStr'),
-            'level' => wei()->setting->getValue('member.init_level'),
+            'level_id' => wei()->setting->getValue('member.init_level_id'),
             'score' => (int) $card['bonus_rule']['init_increase_bonus'],
             'total_score' => (int) $card['bonus_rule']['init_increase_bonus'],
         ]);
