@@ -60,8 +60,11 @@ class Plugin extends BasePlugin
             return;
         }
 
-        $member = wei()->member->getMember();
-        if ($member) {
+        $member = wei()->member()->curApp()->findOrInit([
+            'card_id' => $card['id'],
+            'user_id' => $user['id'],
+        ]);
+        if (!$member->isNew()) {
             $this->logger->info('用户已有会员卡', $app->getAttrs());
             return;
         }
@@ -80,13 +83,13 @@ class Plugin extends BasePlugin
         /** @var MemberRecord $member */
         $member->save([
             'card_id' => $card['id'],
-            'card_wechat_id' => $card['card_wechat_id'],
+            'card_wechat_id' => $card['wechat_id'],
             'code' => $app->getAttr('UserCardCode'),
             'membership_number' => $app->getAttr('UserCardCode'), // TODO 是否为同一个
             'wechat_open_id' => $user['wechatOpenId'],
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
             'outer_str' => $app->getAttr('OuterStr'),
-            'level_id' => wei()->setting->getValue('member.init_level_id'),
+            'level_id' => wei()->setting->getValue('member.init_level_id', 0),
             'score' => (int) $card['bonus_rule']['init_increase_bonus'],
             'total_score' => (int) $card['bonus_rule']['init_increase_bonus'],
         ]);
