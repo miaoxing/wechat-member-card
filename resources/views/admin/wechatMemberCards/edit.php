@@ -96,6 +96,7 @@ $view->layout();
 
         <div class="form-group">
           <label class="col-sm-2 control-label" for="date-info-type">
+            <span class="text-warning">*</span>
             有效期
           </label>
 
@@ -785,7 +786,7 @@ $view->layout();
                   <a href="#" data-toggle="modal" data-target="#shops-modal">添加适用门店</a>
                 </label>
                 <input type="hidden" name="shopIds" id="shopIds">
-                <input type="hidden" name="wechatLocationIds" id="wechatLocationIds">
+                <input type="hidden" name="location_id_list" id="location-id-list">
               </div>
             </div>
 

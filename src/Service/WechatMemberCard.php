@@ -13,13 +13,13 @@ class WechatMemberCard extends BaseService
             'background_pic_url' => $card['background_pic_url'],
 
             'supply_bonus' => (bool) $card['supply_bonus'],
-            'bonus_url' => wei()->linkTo->getFullUrl($card['bonus_link_to']),
+            'bonus_url' => wei()->wechatCard->getUrl($card['bonus_link_to']),
             'bonus_cleared' => $card['bonus_cleared'],
             'bonus_rules' => $card['bonus_rules'],
             'bonus_rule' => $card->getWechatBonusRule(),
 
             'supply_balance' => (bool) $card['supply_balance'],
-            'balance_url' => wei()->linkTo->getFullUrl($card['balance_link_to']),
+            'balance_url' => wei()->wechatCard->getUrl($card['balance_link_to']),
             'balance_rules' => $card['balance_rules'],
 
             'prerogative' => $card['detail'],
