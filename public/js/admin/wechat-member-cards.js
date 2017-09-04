@@ -173,6 +173,7 @@ define([
       $.ajax({
         url: $.url('admin/wechat-medias/create'),
         type: 'post',
+        dataType: 'json',
         data: {
           url: data.response.url
         }
