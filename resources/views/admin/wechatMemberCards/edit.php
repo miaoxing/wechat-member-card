@@ -215,7 +215,7 @@ $view->layout();
             <div class="checkbox-inline">
               <label>
                 <input name="supply_score" type="hidden" value="0" data-populate-ignore>
-                <input class="js-supply-score js-toggle-display" id="supply-score" name="supply_score" type="checkbox"
+                <input class="js-editable js-supply-score js-toggle-display" id="supply-score" name="supply_score" type="checkbox"
                   value="1" data-target=".js-supply-score-groups" data-value=":checked">
                 积分优惠
                 <span class="js-tooltips help-button help-button-xs"
@@ -225,7 +225,7 @@ $view->layout();
             <div class="checkbox-inline">
               <label>
                 <input name="supply_discount" type="hidden" value="0" data-populate-ignore>
-                <input class="js-supply-discount js-toggle-display" id="supply-discount" name="supply_discount"
+                <input class="js-editable js-supply-discount js-toggle-display" id="supply-discount" name="supply_discount"
                   type="checkbox" value="1" data-target=".js-supply-discount-groups" data-value=":checked">
                 折扣优惠
                 <span class="js-tooltips help-button help-button-xs"
@@ -602,13 +602,6 @@ $view->layout();
                 <input type="hidden" value="0" name="can_share" data-populate-ignore>
                 <input class="js-editable" type="checkbox" value="1" name="can_share" id="can_share">
                 用户可以分享领券链接
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="hidden" value="0" name="auto_activate">
-                <input type="checkbox" value="1" name="auto_activate" id="auto_activate">
-                用户需激活后才能使用
               </label>
             </div>
           </div>
