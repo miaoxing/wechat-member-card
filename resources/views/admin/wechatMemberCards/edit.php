@@ -112,7 +112,7 @@ $view->layout();
             </div>
             <div class="radio">
               <label>
-                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type-2" value="2" checked>
+                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type-3" value="3" checked>
                 永久有效
               </label>
             </div>

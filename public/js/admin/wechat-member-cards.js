@@ -13,7 +13,6 @@ define([
   'plugins/app/libs/jquery-toggle-display/jquery-toggle-display'
 ], function (template) {
   var DATE_TYPE_FIX_TIME_RANGE = 1;
-  var DATE_TYPE_FIX_TERM = 2;
   var MAX_CUSTOM_FIELDS = 3;
   var DELAY_SLOW = 5000;
 
@@ -82,14 +81,15 @@ define([
           return true;
         },
         success: function (ret) {
-          $.msg(ret, function () {
-            if (ret.data && ret.data.id) {
-              that.$('.js-id').val(ret.data.id);
-            }
+          // 保存失败,固定弹层展示
+          if (ret.code !== 1) {
+            $.alert(ret.message);
+            return;
+          }
 
-            if (ret.code === 1) {
-              window.location = $.url('admin/wechat-member-cards');
-            }
+          // 保存成功,头部提示并自动跳转
+          $.msg(ret, function () {
+            window.location = $.url('admin/wechat-member-cards');
           });
         }
       })
