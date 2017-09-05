@@ -58,7 +58,7 @@ class Plugin extends BasePlugin
         $this->logger->info('收到领卡事件', $app->getAttrs());
 
         $card = wei()->wechatCard()->find(['wechat_id' => $app->getAttr('CardId')]);
-        if (!$card || !$card['type'] == WechatCardRecord::TYPE_MEMBER_CARD) {
+        if (!$card || $card['type'] != WechatCardRecord::TYPE_MEMBER_CARD) {
             return;
         }
 
@@ -91,7 +91,7 @@ class Plugin extends BasePlugin
             'membership_number' => $app->getAttr('UserCardCode'), // TODO 是否为同一个
             'wechat_open_id' => $user['wechatOpenId'],
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
-            'outer_str' => $app->getAttr('OuterStr'),
+            'outer_str' => (string) $app->getAttr('OuterStr'),
             'level_id' => wei()->setting->getValue('member.init_level_id', 0),
             'score' => (int) $card['bonus_rule']['init_increase_bonus'],
             'total_score' => (int) $card['bonus_rule']['init_increase_bonus'],
