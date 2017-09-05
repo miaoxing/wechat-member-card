@@ -106,9 +106,9 @@ $view->layout();
                 <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type" value="1">
                 固定日期
               </label>
-              <input type="text" class="js-date-range t-11 text-center" placeholder="请选择日期范围">
-              <input type="hidden" class="js-start-date" name="date_info[begin_time]">
-              <input type="hidden" class="js-end-date" name="date_info[end_time]">
+              <input type="text" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-range t-11 text-center" placeholder="请选择日期范围">
+              <input type="hidden" class="js-editable js-start-date" name="date_info[begin_time]">
+              <input type="hidden" class="js-editable js-end-date" name="date_info[end_time]">
             </div>
             <div class="radio">
               <label>
@@ -1038,7 +1038,7 @@ $view->layout();
         <div class="col-lg-offset-2">
           <button class="btn btn-primary" type="submit">
             <i class="fa fa-check bigger-110"></i>
-            提交微信审核
+            提交微信
           </button>
 
           &nbsp; &nbsp; &nbsp;

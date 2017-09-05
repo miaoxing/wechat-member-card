@@ -55,6 +55,8 @@ class Plugin extends BasePlugin
      */
     public function onWechatUserGetCard(WeChatApp $app, User $user)
     {
+        $this->logger->info('收到领卡事件', $app->getAttrs());
+
         $card = wei()->wechatCard()->find(['wechat_id' => $app->getAttr('CardId')]);
         if (!$card || !$card['type'] == WechatCardRecord::TYPE_MEMBER_CARD) {
             return;
