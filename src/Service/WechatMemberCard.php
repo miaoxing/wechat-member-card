@@ -38,7 +38,7 @@ class WechatMemberCard extends BaseService
                 continue;
             }
             $data['member_card'] += ['custom_field' . $index => $card->getWechatCustomField($key)];
-            $index++;
+            ++$index;
         }
 
         return $data;
