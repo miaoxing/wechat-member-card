@@ -80,4 +80,16 @@ class WechatMemberCards extends BaseController
     {
         return wei()->wechatCard->save($req);
     }
+
+    public function showAction($req)
+    {
+        $card = wei()->wechatCard()->findOneById($req['id']);
+
+        $account = wei()->wechatAccount->getCurrentAccount();
+        $api = $account->createApiService();
+
+        $ret = $api->getCardRet($card['wechat_id']);
+
+        return $ret;
+    }
 }
