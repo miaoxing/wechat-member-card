@@ -16,35 +16,7 @@ $view->layout();
       <fieldset>
         <legend class="grey bigger-130">基本信息</legend>
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="brand-name">
-            <span class="text-warning">*</span>
-            商户名称
-          </label>
-
-          <div class="col-lg-4">
-            <input type="text" class="form-control" name="brand_name" id="brand-name" data-rule-required="true">
-          </div>
-          <label class="col-lg-6 help-text" for="brand-name">
-            提供服务的商户名
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="logo-url">
-            <span class="text-warning">*</span>
-            商家Logo
-          </label>
-
-          <div class="js-upload-container col-lg-4">
-            <input type="file" class="js-logo-file"/>
-            <input type="hidden" id="logo-url" name="logo_url" class="js-editable js-logo-url js-image-url"/>
-          </div>
-
-          <label class="col-lg-6 help-text">
-            上传的图片限制文件大小限制 1MB，推荐像素为 300*300，支持 JPG格式。
-          </label>
-        </div>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-brand.php') ?>
 
         <div class="form-group">
           <label class="col-sm-2 control-label" for="cover-type">
@@ -70,11 +42,7 @@ $view->layout();
             </div>
 
             <div class="js-cover-type-color m-t display-none">
-              <select name="color" id="color" class="js-editable js-color form-control">
-                <?php foreach (wei()->wechatCard->getColors() as $color => $wechatColor) : ?>
-                  <option value="<?= $color ?>" data-color="<?= $color ?>"><?= $color ?></option>
-                <?php endforeach ?>
-              </select>
+              <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-color.php') ?>
             </div>
           </div>
         </div>
@@ -101,18 +69,12 @@ $view->layout();
           </label>
 
           <div class="col-lg-4">
-            <div class="radio p-t-0">
-              <label>
-                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type" value="1">
-                固定日期
-              </label>
-              <input type="text" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-range t-11 text-center" placeholder="请选择日期范围">
-              <input type="hidden" class="js-editable js-start-date" name="date_info[begin_time]">
-              <input type="hidden" class="js-editable js-end-date" name="date_info[end_time]">
-            </div>
+            <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-date-info-fix-term.php') ?>
             <div class="radio">
               <label>
-                <input type="radio" class="<?= $isFixTerm ? '' : 'js-editable' ?> js-date-info-type" name="date_info[type]" id="date-info-type-3" value="3" checked>
+                <input class="<?= $isFixTerm ? '' : 'js-editable' ?> js-toggle-display js-date-info-type"
+                  id="date-info-type-3" type="radio" name="date_info[type]" value="3" checked
+                  data-target=".js-date-range" data-value=":checked" data-on="disable" data-off="enable">
                 永久有效
               </label>
             </div>
@@ -122,89 +84,7 @@ $view->layout();
           </label>
         </div>
 
-        <div class="form-group">
-          <label class="col-sm-2 control-label" for="time-limit-type">
-            可用时段
-          </label>
-
-          <div class="col-lg-6">
-            <div class="radio">
-              <label>
-                <input type="radio" class="js-toggle-display" name="time_limit_type" id="time-limit-type" value="0"
-                  data-value=":checked" data-reverse-target=".js-time-limit-type-part"
-                  checked>
-                全部时段
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" class="js-toggle-display" name="time_limit_type" id="time-limit-type-2" value="1" data-value=":checked" data-target=".js-time-limit-type-part">
-                部分时段
-              </label>
-            </div>
-
-            <div class="js-time-limit-type-part m-t display-none">
-              <label class="pull-left control-label">日期：</label>
-              <div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="MONDAY">
-                    周一
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="TUESDAY">
-                    周二
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="WEDNESDAY">
-                    周三
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="THURSDAY">
-                    周四
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="FRIDAY">
-                    周五
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="SATURDAY">
-                    周六
-                  </label>
-                </div>
-                <div class="checkbox-inline">
-                  <label>
-                    <input type="checkbox" name="time_limit[days][]" value="SUNDAY">
-                    周日
-                  </label>
-                </div>
-              </div>
-
-              <div class="m-t">
-                <label>时间：</label>
-                <input type="text" class="text-center t-2" name="time_limit[times][1][begin]">
-                至
-                <input type="text" class="text-center t-2" name="time_limit[times][1][end]">
-                &nbsp;&nbsp;
-                <input type="text" class="text-center t-2" name="time_limit[times][2][begin]">
-                至
-                <input type="text" class="text-center t-2" name="time_limit[times][2][end]">
-
-                <div class="m-t m-l-lg help-text">请使用24小时制输入时间，格式如11:00至14:30，留空表示全天。</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-time-limit.php') ?>
 
         <div class="form-group">
           <label class="col-sm-2 control-label" for="supply-score">
@@ -352,42 +232,8 @@ $view->layout();
           </label>
         </div>
 
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="description">
-            使用须知
-          </label>
-
-          <div class="col-lg-4">
-            <textarea class="js-editable form-control" name="description" id="description" rows="4"></textarea>
-          </div>
-
-          <label class="col-lg-6 help-text" for="description">
-            <span class="js-edit-tips text-warning display-none">修改需审核</span>
-            注：1、上文设置中，如已经填写“积分优惠”“折扣优惠”的内容，将会自动在用户会员卡详情展示，无需重复填写。2、建议填写其他注意事项，举例：积分不支持兑换现金
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="description">
-            图文介绍
-          </label>
-
-          <div class="col-lg-4">
-            <p class="help-text">图片建议尺寸：900像素 * 500像素，大小不超过2M。<br>
-              至少上传1组图文，最多输入5000字</p>
-            <div class="js-article-list">
-
-            </div>
-            <div class="js-add-article">
-              <hr class="m-t-0">
-              <a href="javascript:;">添加图文</a>
-            </div>
-          </div>
-
-          <label class="col-lg-6 help-text" for="description">
-            图文内容建议上传商品、服务、环境等优质图片，并辅之以简单描述。
-          </label>
-        </div>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-description.php') ?>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-text-image-list.php') ?>
       </fieldset>
 
       <fieldset>
@@ -623,80 +469,8 @@ $view->layout();
           </div>
         </div>
 
-        <div class="js-editable form-group">
-          <label class="col-lg-2 control-label" for="code-type-0">
-            销券方式
-          </label>
-
-          <div class="col-lg-6">
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="0" checked name="code_type" id="code-type-0">
-                不显示code和条形码类型
-              </label>
-              <label class="block text-muted">
-                适用于线上核销
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="1" name="code_type" id="code-type-1">
-                仅卡号
-              </label>
-              <label class="block text-muted">
-                只显示卡券号，验证后可进行销券
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="3" name="code_type" id="code-type-3">
-                二维码
-              </label>
-              <label class="block text-muted">
-                包含卡券信息的二维码和卡号，扫描后可进行销券
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="2" name="code_type" id="code-type-2">
-                条形码
-              </label>
-              <label class="block text-muted">
-                包含卡券信息的条形码和卡号，扫描后可进行销券
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="4" name="code_type" id="code-type-4">
-                二维码，不显示卡号
-              </label>
-              <label class="block text-muted">
-                只显示卡券信息的二维码，扫描后可进行销券
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input class="js-editable" type="radio" value="5" name="code_type" id="code-type-5">
-                条形码，不显示卡号
-              </label>
-              <label class="block text-muted">
-                只显示卡券信息的条形码，扫描后可进行销券
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="js-editable form-group">
-          <label class="col-lg-2 control-label" for="notice">
-            <span class="text-warning">*</span>
-            操作提示
-          </label>
-
-          <div class="col-lg-4">
-            <input type="text" class="form-control" name="notice" id="notice">
-          </div>
-          <label for="notice" class="col-lg-6 help-text">建议引导用户到店出示卡券，由店员完成核销操作</label>
-        </div>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-code-type.php') ?>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-notice.php') ?>
 
         <div class="form-group">
           <label class="col-lg-2 control-label" for="is-swipe-card">
@@ -741,242 +515,13 @@ $view->layout();
       <fieldset>
         <legend class="grey bigger-130">服务信息</legend>
 
-        <div class="js-editable form-group">
-          <label class="col-lg-2 control-label" for="shop-type">
-            适用门店
-          </label>
-
-          <div class="col-lg-6 shop-radios">
-            <p class="help-text hide">"适用门店"方便帮助用户到店消费。如有门店，请仔细配置。可在"微官网"-"门店管理"管理门店信息。</p>
-
-            <div class="radio">
-              <label>
-                <input type="radio" value="1" checked name="shop_type" class="js-editable js-shop-type">
-                全部门店适用
-              </label>
-            </div>
-
-            <!-- 暂未实现 -->
-            <div class="radio hide">
-              <label>
-                <input type="radio" value="2" name="shop_type" id="shop-type" class="js-editable js-shop-type">
-                指定门店适用
-              </label>
-
-              <div class="js-shop-type-1">
-                <table class="selected-shops-table table table-bordered">
-                  <thead>
-                  <tr>
-                    <th>门店名称</th>
-                    <th>地址</th>
-                    <th class="text-center">操作</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-                <label class="block">
-                  <a href="#" data-toggle="modal" data-target="#shops-modal">添加适用门店</a>
-                </label>
-                <input type="hidden" name="shopIds" id="shopIds">
-                <input type="hidden" name="location_id_list" id="location-id-list">
-              </div>
-            </div>
-
-            <div class="radio">
-              <label>
-                <input type="radio" value="0" name="shop_type" class="js-editable js-shop-type">
-                无指定门店
-              </label>
-            </div>
-          </div>
-        </div>
+        <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-shop.php') ?>
       </fieldset>
 
-      <fieldset>
-        <legend class="grey bigger-130">自定义链接</legend>
-
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="center-title">
-            顶部居中的按钮
-          </label>
-
-          <div class="col-lg-4">
-            <input type="text" class="js-editable form-control" name="center_title" id="center-title">
-          </div>
-          <label for="centerTitle" class="col-lg-6 help-text">仅在卡券状态正常(可以核销)时显示</label>
-        </div>
-
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="center-sub-title">
-            按钮下方的提示语
-          </label>
-
-          <div class="col-lg-4">
-            <input type="text" class="js-editable form-control" name="center_sub_title" id="center-sub-title">
-          </div>
-
-        </div>
-
-        <div class="form-group">
-          <label class="col-lg-2 control-label" for="center-link-to">
-            顶部居中的链接
-          </label>
-
-          <div class="col-lg-4">
-            <p class="js-link-to form-control-static" id="center-link-to" data-name="center_link_to"></p>
-          </div>
-        </div>
-
-      </fieldset>
-
-      <fieldset>
-        <legend class="grey bigger-130">
-          商户介绍
-          <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#merchant-intro"
-            aria-expanded="false" aria-controls="merchant-intro" data-hide-text="收起">
-            展开
-          </a>
-        </legend>
-
-        <div class="js-collapse collapse" id="merchant-intro">
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="service-phone">
-              服务电话
-            </label>
-
-            <div class="col-lg-4">
-              <input type="text" class="js-editable form-control" name="service_phone" id="service-phone">
-            </div>
-            <label for="service-phone" class="col-lg-6 help-text">手机或固话</label>
-          </div>
-
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="business-service">
-              商户服务
-            </label>
-
-            <div class="col-lg-4">
-              <div class="checkbox-inline">
-                <label>
-                  <input id="business-service" class="business_service" name="business_service[]" type="checkbox" value="1">
-                  免费WIFI
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input class="business_service" name="business_service[]" type="checkbox" value="2">
-                  可带宠物
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input class="business_service" name="business_service[]" type="checkbox" value="3">
-                  免费停车
-                </label>
-              </div>
-              <div class="checkbox-inline">
-                <label>
-                  <input class="business_service" name="business_service[]" type="checkbox" value="4">
-                  可外卖
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </fieldset>
-
-      <fieldset>
-        <legend class="grey bigger-130">
-          自定义入口
-          <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#custom-url-collapse"
-            aria-expanded="false" aria-controls="custom-url-collapse" data-hide-text="收起">
-            展开
-          </a>
-        </legend>
-
-        <div class="js-collapse collapse" id="custom-url-collapse">
-          <div class="js-editable form-group">
-            <label class="col-lg-2 control-label" for="custom-url-name">
-              自定义入口名称
-            </label>
-
-            <div class="col-lg-4">
-              <input type="text" class="js-editable form-control" name="custom_url_name" id="custom-url-name">
-            </div>
-            <label for="customUrlName" class="col-lg-6 help-text">长度限制在5个汉字内,如"立即使用","在线预约"</label>
-          </div>
-
-          <div class="js-editable form-group">
-            <label class="col-lg-2 control-label" for="custom-link-to">
-              自定义入口链接
-            </label>
-
-            <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="custom-link-to" data-name="custom_link_to"></p>
-            </div>
-          </div>
-
-          <div class="js-editable form-group">
-            <label class="col-lg-2 control-label" for="custom-url-sub-title">
-              入口右侧的提示
-            </label>
-
-            <div class="col-lg-4">
-              <input type="text" class="js-editable form-control" name="custom_url_sub_title" id="custom-url-sub-title">
-            </div>
-            <label for="customUrlSubTitle" class="col-lg-6 help-text">长度限制在6个汉字内</label>
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend class="grey bigger-130">
-          营销场景自定义入口
-          <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#promotion-url-collapse"
-            aria-expanded="false" aria-controls="promotion-url-collapse" data-hide-text="收起">
-            展开
-          </a>
-        </legend>
-
-        <div class="js-collapse collapse" id="promotion-url-collapse">
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="promotion-url-name">
-              营销场景自定义入口
-            </label>
-
-            <div class="col-lg-4">
-              <input type="text" class="js-editable form-control" name="promotion_url_name" id="promotion-url-name">
-            </div>
-            <label for="promotion-url-name" class="col-lg-6 help-text">长度限制在5个汉字内,如"再次购买"</label>
-          </div>
-
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="promotion-link-to">
-              营销场景自定义入口链接
-            </label>
-
-            <div class="col-lg-4">
-              <p class="js-link-to form-control-static" id="promotion-link-to" data-name="promotion_link_to"></p>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-lg-2 control-label" for="promotion-url-sub-title">
-              营销场景入口右侧的提示
-            </label>
-
-            <div class="col-lg-4">
-              <input type="text" class="js-editable form-control" name="promotion_url_sub_title" id="promotion-url-sub-title">
-            </div>
-            <label for="promotion-url-sub-title" class="col-lg-6 help-text">长度限制在6个汉字内</label>
-          </div>
-        </div>
-      </fieldset>
+      <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-center-url.php') ?>
+      <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-merchant-intro.php') ?>
+      <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-custom-url.php') ?>
+      <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-promotion-url.php') ?>
 
       <fieldset>
         <legend class="grey bigger-130">
@@ -1046,75 +591,6 @@ $view->layout();
   <!-- PAGE CONTENT ENDS -->
 </div><!-- /.col -->
 <!-- /.row -->
-
-<!-- Modal -->
-<div class="modal fade" id="shops-modal" tabindex="-1" role="dialog" aria-labelledby="shops-modal-label"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-            class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="shops-modal-label">选择门店</h4>
-      </div>
-      <div class="modal-body">
-        <table id="shops-table" class="table table-bordered">
-          <thead>
-          <tr>
-            <th style="width: 50px" class="text-center">
-              <label>
-                <input class="ace toggle-all" data-class="shop-id" type="checkbox">
-                <span class="lbl"></span>
-              </label>
-            </th>
-            <th>门店名称</th>
-            <th class="text-right">地址</th>
-          </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">完成</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/html" id="shops-checkbox">
-  <label>
-    <input class="ace shop-id" type="checkbox" value="<%= id %>" <%= selectedShopIds.indexOf(id) != -1 ? 'checked' : ''
-    %>>
-    <span class="lbl"></span>
-  </label>
-</script>
-
-<script type="text/html" id="shops-row">
-  <tr>
-    <td><%= name %></td>
-    <td><%= address %></td>
-    <td class="text-center bigger-110">
-      <a class="remove-shop" href="javascript:" data-id="<%= id %>"><i class="fa fa-trash-o"></i></a>
-    </td>
-  </tr>
-</script>
-
-<script class="js-article-item-tpl" type="text/html">
-  <div class="js-article-item">
-    <div class="js-upload-container">
-    <input type="file" class="js-article-url" <%= disable ? 'disabled' : '' %>>
-    <input type="hidden" name="text_image_list[<%= id %>][image_url]" class="js-image-url" value="<%= image_url %>">
-    </div>
-    <textarea class="form-control m-t" name="text_image_list[<%= id %>][text]" rows="4" data-rule-required="true"
-      placeholder="图文内容建议上传商品、服务、环境等优质图片，并辅之以简单描述"><%= text %></textarea>
-    <% if (!disable) { %>
-      <div class="m-y text-right">
-        <a class="js-remove-article" href="javascript:;">删除</a>
-      </div>
-    <% } %>
-  </div>
-</script>
 
 <?= $block('js') ?>
 <script>

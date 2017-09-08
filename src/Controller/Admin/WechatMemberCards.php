@@ -64,7 +64,11 @@ class WechatMemberCards extends BaseController
 
     public function editAction($req)
     {
-        $card = wei()->wechatCard()->curApp()->notDeleted()->findId($req['id']);
+        $card = wei()->wechatCard()
+            ->curApp()
+            ->notDeleted()
+            ->findId($req['id'])
+            ->fromArray($req);
 
         $isFixTerm = $card['date_info']['type'] == WechatCardRecord::DATE_TYPE_FIX_TERM;
 
