@@ -72,6 +72,14 @@ class WechatMemberCards extends BaseController
 
         $isFixTerm = $card['date_info']['type'] == WechatCardRecord::DATE_TYPE_FIX_TERM;
 
+        $msgCards = wei()->wechatCard()
+            ->select('wechat_id, title')
+            ->curApp()
+            ->notDeleted()
+            ->andWhere("wechat_id != ''")
+            ->andWhere('type != ?', WechatCardRecord::TYPE_MEMBER_CARD)
+            ->fetchAll();
+
         return get_defined_vars();
     }
 

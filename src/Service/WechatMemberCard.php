@@ -30,6 +30,9 @@ class WechatMemberCard extends BaseService
 
             'custom_cell1' => $card->getWechatCustomCell(),
             'discount' => $card->getWechatDiscount(),
+
+            'modify_msg_operation' => $card->getWechatMsgOperation('modify'),
+            'activate_msg_operation' => $card->getWechatMsgOperation('activate'),
         ];
 
         $index = 1;

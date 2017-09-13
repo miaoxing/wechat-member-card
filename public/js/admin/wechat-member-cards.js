@@ -1,7 +1,10 @@
 define([
   'plugins/wechat-card/js/admin/wechat-cards',
-  'template'
-], function (wechatCards, template) {
+  'assets/dateTimePicker',
+  'comps/select2/select2.min',
+  'css!comps/select2/select2',
+  'css!comps/select2-bootstrap-css/select2-bootstrap'
+], function (wechatCards) {
   var MAX_CUSTOM_FIELDS = 3;
 
   var WechatMemberCards = function () {
@@ -105,6 +108,15 @@ define([
 
     this.$('.js-tooltips').tooltip({
       container: 'body'
+    });
+
+    this.$('.js-activate-end-time, .js-modify-end-time').datetimepicker({
+      showSecond: true,
+      timeFormat: 'hh:mm:ss'
+    });
+
+    this.$('.js-activate-card-id-list, .js-modify-card-id-list').select2({
+      maximumSelectionSize: 10
     });
   };
 

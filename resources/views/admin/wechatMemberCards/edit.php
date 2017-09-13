@@ -568,6 +568,172 @@ $view->layout();
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend class="grey bigger-130">
+          会员卡激活消息
+          <small>(选填)</small>
+          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#activate-msg-operation-collapse"
+            aria-expanded="false" aria-controls="activate-msg-operation-collapse" data-hide-text="收起">
+            展开
+          </a>
+        </legend>
+
+        <div class="js-collapse collapse" id="activate-msg-operation-collapse">
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="activate-type">
+              消息指向
+            </label>
+
+            <div class="col-lg-4">
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="activate_msg_operation[url_cell][type]"
+                  value="0" checked="checked" data-value=":checked" data-reverse-target=".js-activate-link-to-form-group, .js-activate-card-id-list-form-group">不启用
+              </label>
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="activate_msg_operation[url_cell][type]"
+                  value="1" data-value=":checked" data-target=".js-activate-link-to-form-group" data-reverse-target=".js-activate-card-id-list-form-group"> 链接
+              </label>
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="activate_msg_operation[url_cell][type]"
+                  value="2" data-value=":checked" data-target=".js-activate-card-id-list-form-group" data-reverse-target=".js-activate-link-to-form-group"> 卡券
+                </label>
+            </div>
+          </div>
+
+          <div class="js-activate-link-to-form-group form-group display-none">
+            <label class="col-lg-2 control-label" for="activate-link-to">
+              链接
+            </label>
+
+            <div class="col-lg-4">
+              <p class="js-editable js-link-to form-control-static" id="activate-msg-operation-link-to" data-name="activate_msg_operation[url_cell][link_to]"></p>
+            </div>
+          </div>
+
+          <div class="js-activate-card-id-list-form-group form-group display-none">
+            <label class="col-lg-2 control-label" for="activate-card-id-list">
+              卡券
+            </label>
+
+            <div class="col-lg-4">
+              <select class="js-activate-card-id-list form-control" id="activate-card-id-list"
+                name="activate_msg_operation[url_cell][card_id_list][]" multiple>
+                <?php foreach ($msgCards as $msgCard) : ?>
+                  <option value="<?= $msgCard['wechat_id'] ?>"><?= $msgCard['title'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </div>
+
+            <label class="col-lg-4" for="activate-card-id-list">
+              送券的列表，不支持普通券和朋友的券混合使用，最多填写10个
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="activate-text">
+            文本内容
+            </label>
+
+            <div class="col-lg-4">
+              <input type="text" class="js-editable form-control" id="activate-text" name="activate_msg_operation[url_cell][text]">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="activate-end-time">
+              截止时间
+            </label>
+
+            <div class="col-lg-4">
+              <input type="text" class="js-activate-end-time js-editable form-control" id="activate-end-time" name="activate_msg_operation[url_cell][end_time]">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="grey bigger-130">
+          会员卡积分余额等变动消息
+          <small>(选填)</small>
+          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#modify-msg-operation-collapse"
+            aria-expanded="false" aria-controls="modify-msg-operation-collapse" data-hide-text="收起">
+            展开
+          </a>
+        </legend>
+
+        <div class="js-collapse collapse" id="modify-msg-operation-collapse">
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="modify-type">
+              消息指向
+            </label>
+
+            <div class="col-lg-4">
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="modify_msg_operation[url_cell][type]"
+                  value="0" checked="checked" data-value=":checked" data-reverse-target=".js-modify-link-to-form-group, .js-modify-card-id-list-form-group">不启用
+              </label>
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="modify_msg_operation[url_cell][type]"
+                  value="1" data-value=":checked" data-target=".js-modify-link-to-form-group" data-reverse-target=".js-modify-card-id-list-form-group"> 链接
+              </label>
+              <label class="radio-inline">
+                <input type="radio" class="js-editable js-toggle-display" name="modify_msg_operation[url_cell][type]"
+                  value="2" data-value=":checked" data-target=".js-modify-card-id-list-form-group" data-reverse-target=".js-modify-link-to-form-group"> 卡券
+              </label>
+            </div>
+          </div>
+
+          <div class="js-modify-link-to-form-group form-group display-none">
+            <label class="col-lg-2 control-label" for="modify-link-to">
+              链接
+            </label>
+
+            <div class="col-lg-4">
+              <p class="js-editable js-link-to form-control-static" id="modify-msg-operation-link-to" data-name="modify_msg_operation[url_cell][link_to]"></p>
+            </div>
+          </div>
+
+          <div class="js-modify-card-id-list-form-group form-group display-none">
+            <label class="col-lg-2 control-label" for="modify-card-id-list">
+              卡券
+            </label>
+
+            <div class="col-lg-4">
+              <select class="js-modify-card-id-list form-control" id="modify-card-id-list"
+                name="modify_msg_operation[url_cell][card_id_list][]" multiple>
+                <?php foreach ($msgCards as $msgCard) : ?>
+                  <option value="<?= $msgCard['wechat_id'] ?>"><?= $msgCard['title'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </div>
+
+            <label class="col-lg-4" for="modify-card-id-list">
+              送券的列表，不支持普通券和朋友的券混合使用，最多填写10个
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="modify-text">
+              文本内容
+            </label>
+
+            <div class="col-lg-4">
+              <input type="text" class="js-editable form-control" id="modify-text" name="modify_msg_operation[url_cell][text]">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-lg-2 control-label" for="modify-end-time">
+              截止时间
+            </label>
+
+            <div class="col-lg-4">
+              <input type="text" class="js-modify-end-time js-editable form-control" id="modify-end-time" name="modify_msg_operation[url_cell][end_time]">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
       <input class="js-editable js-id" type="hidden" id="id" name="id">
       <input type="hidden" id="type" name="type" value="<?= WechatCardRecord::TYPE_MEMBER_CARD ?>">
       <input type="hidden" id="quantity" name="quantity" value="100000000">
