@@ -88,7 +88,6 @@ class Plugin extends BasePlugin
             'card_id' => $card['id'],
             'card_wechat_id' => $card['wechat_id'],
             'code' => $app->getAttr('UserCardCode'),
-            'membership_number' => $app->getAttr('UserCardCode'), // TODO 是否为同一个
             'wechat_open_id' => $user['wechatOpenId'],
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
             'outer_str' => (string) $app->getAttr('OuterStr'),
