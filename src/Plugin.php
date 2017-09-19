@@ -96,4 +96,14 @@ class Plugin extends BasePlugin
             'total_score' => (int) $card['bonus_rule']['init_increase_bonus'],
         ]);
     }
+
+    public function onAdminNavGetNavs(&$navs, &$categories, &$subCategories)
+    {
+        $navs[] = [
+            'parentId' => 'member-setting',
+            'url' => 'admin/wechat-member-cards',
+            'name' => '会员卡管理',
+            'sort' => 1000,
+        ];
+    }
 }
