@@ -76,7 +76,7 @@
 
 <script id="table-actions" type="text/html">
   <div class="action-links">
-    <% if(audit == 1) {%>
+    <!-- <% if(audit == 1) {%>
     <a href="javascript:;" class="send-out" data-id="<%= id %>">
       投放
     </a>
@@ -84,6 +84,7 @@
     <a href="<%= $.url('admin/wechat-card-stats/receive', {cardId: id}) %>">
       统计
     </a>
+    -->
     <a href="<%= $.url('admin/wechat-member-cards/%s/edit', id) %>">
       编辑
     </a>
