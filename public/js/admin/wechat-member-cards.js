@@ -1,9 +1,6 @@
 define([
   'plugins/wechat-card/js/admin/wechat-cards',
-  'assets/dateTimePicker',
-  'comps/select2/select2.min',
-  'css!comps/select2/select2',
-  'css!comps/select2-bootstrap-css/select2-bootstrap'
+  'assets/dateTimePicker'
 ], function (wechatCards) {
   var MAX_CUSTOM_FIELDS = 3;
 
