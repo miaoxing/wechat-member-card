@@ -90,6 +90,7 @@ class Plugin extends BasePlugin
             'code' => $app->getAttr('UserCardCode'),
             'wechat_open_id' => $user['wechatOpenId'],
             'is_give_by_friend' => $app->getAttr('IsGiveByFriend'),
+            'friend_user_name' => (string) $app->getAttr('FriendUserName'),
             'outer_str' => (string) $app->getAttr('OuterStr'),
             'level_id' => wei()->setting->getValue('member.init_level_id', 0),
             'score' => (int) $card['bonus_rule']['init_increase_bonus'],
