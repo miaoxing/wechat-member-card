@@ -9,8 +9,10 @@ class WechatMemberCard extends BaseService
 {
     public function addWechatCardData(WechatCardRecord $card, $data)
     {
+        $backgroundPicUrl = wei()->wechatMedia->updateUrlToWechatUrl($card['background_pic_url']);
+
         $data['member_card'] += [
-            'background_pic_url' => $card['background_pic_url'],
+            'background_pic_url' => $backgroundPicUrl,
 
             'supply_bonus' => (bool) $card['supply_bonus'],
             'bonus_url' => wei()->wechatCard->getUrl($card['bonus_link_to']),
