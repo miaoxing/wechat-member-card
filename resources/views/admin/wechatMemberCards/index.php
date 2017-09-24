@@ -81,10 +81,10 @@
       投放
     </a>
     <% } %>
-    <a href="<%= $.url('admin/wechat-card-stats/receive', {cardId: id}) %>">
+    -->
+    <a href="<%= $.url('admin/member-weekly-stats/show', {card_id: id}) %>">
       统计
     </a>
-    -->
     <a href="<%= $.url('admin/wechat-member-cards/%s/edit', id) %>">
       编辑
     </a>
