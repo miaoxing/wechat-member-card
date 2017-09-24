@@ -2,11 +2,8 @@
 
 namespace Miaoxing\WechatMemberCard;
 
-use Miaoxing\Member\Service\MemberRecord;
 use miaoxing\plugin\BasePlugin;
-use Miaoxing\Plugin\Service\User;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
-use Wei\WeChatApp;
 
 class Plugin extends BasePlugin
 {
