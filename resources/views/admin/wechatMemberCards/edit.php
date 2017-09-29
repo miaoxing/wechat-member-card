@@ -737,6 +737,7 @@ $view->layout();
       <input class="js-editable js-id" type="hidden" id="id" name="id">
       <input type="hidden" id="type" name="type" value="<?= WechatCardRecord::TYPE_MEMBER_CARD ?>">
       <input type="hidden" id="quantity" name="quantity" value="100000000">
+      <input class="js-editable" type="hidden" id="get-limit" name="get_limit" value="1">
 
       <div class="clearfix form-actions form-group">
         <div class="col-lg-offset-2">
