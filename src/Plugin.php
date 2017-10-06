@@ -17,6 +17,8 @@ class Plugin extends BasePlugin
      */
     protected $description = '微信会员卡';
 
+    protected $adminNavId = 'member';
+
     /**
      * 创建会员卡之前，附加会员卡的资料
      *
