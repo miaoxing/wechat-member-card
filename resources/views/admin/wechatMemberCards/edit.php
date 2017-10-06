@@ -763,7 +763,8 @@ $view->layout();
 <script>
   require(['plugins/wechat-member-card/js/admin/wechat-member-cards'], function (card) {
     card.formAction({
-      data: <?= $card->toJson() ?>
+      data: <?= $card->toJson() ?>,
+      shops: <?= $shops->toJson() ?>
     });
   });
 </script>

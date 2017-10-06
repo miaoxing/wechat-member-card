@@ -7,6 +7,7 @@ define([
   var WechatMemberCards = function () {
     this.$el = $('body');
     this.data = {};
+    this.shops = [];
   };
 
   WechatMemberCards.prototype.$ = function (selector) {
@@ -102,6 +103,7 @@ define([
     wechatCards.initDateRange(this.data);
     wechatCards.initLinkTo(this.data);
     wechatCards.iniTextImageList(this.data);
+    wechatCards.initShop(this.data, this.shops);
 
     this.$('.js-tooltips').tooltip({
       container: 'body'
