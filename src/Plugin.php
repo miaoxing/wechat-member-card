@@ -54,5 +54,12 @@ class Plugin extends BasePlugin
             'name' => '会员卡管理',
             'sort' => 1000,
         ];
+
+        $navs[] = [
+            'parentId' => 'member-setting',
+            'url' => 'admin/wechat-pay-gift-cards',
+            'name' => '支付后赠会员卡',
+            'sort' => 1000,
+        ];
     }
 }
