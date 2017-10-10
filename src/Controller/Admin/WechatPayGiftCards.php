@@ -40,7 +40,7 @@ class WechatPayGiftCards extends BaseController
                 /** @var wechatPayGiftCardRecord $wechatPayGiftCard */
                 foreach ($wechatPayGiftCards->findAll() as $wechatPayGiftCard) {
                     $data[] = $wechatPayGiftCard->toArray() + [
-                            'wechat_card' => $wechatPayGiftCard->wechatCard
+                            'wechat_card' => $wechatPayGiftCard->wechatCard,
                         ];
                 }
 

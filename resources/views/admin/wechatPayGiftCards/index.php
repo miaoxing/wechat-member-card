@@ -1,6 +1,5 @@
 <?php
 
-use Miaoxing\Job\Service\Job;
 
 $view->layout();
 ?>

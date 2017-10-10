@@ -36,8 +36,8 @@ class WechatPayGiftCard extends BaseService
                     'least_cost' => $card['least_cost'] * 100,
                     'max_cost' => $card['max_cost'] * 100,
                     'jump_url' => $card['jump_link_to'] ? wei()->linkTo->getFullUrl($card['jump_link_to']) : '',
-                ]
-            ]
+                ],
+            ],
         ]);
         if ($ret['code'] !== 1) {
             $ret['message'] = '保存失败，微信返回：' . $ret['message'];
