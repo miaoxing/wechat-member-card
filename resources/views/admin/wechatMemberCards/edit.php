@@ -208,7 +208,7 @@ $view->layout();
 
             <label class="control-label help-text">
               <span class="js-edit-tips text-warning display-none">修改需审核</span>
-              请填写1-9.9之间的数字，精确到小数点后1位
+              请填写0-9.99之间的数字，精确到小数点后2位
             </label>
           </div>
         </div>
