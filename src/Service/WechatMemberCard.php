@@ -42,6 +42,10 @@ class WechatMemberCard extends BaseService
             'activate_msg_operation' => $card->getWechatMsgOperation('activate'),
         ];
 
+        $data['member_card']['base_info'] += [
+            'use_dynamic_code' => (bool) $card['use_dynamic_code'],
+        ];
+
         $index = 1;
         foreach ([1, 2, 3] as $key) {
             if (!$card['custom_field' . $key]['enable']) {
