@@ -70,8 +70,6 @@ class WechatMemberCards extends BaseController
             ->findId($req['id'])
             ->fromArray($req);
 
-        $isFixTerm = $card['date_info']['type'] == WechatCardRecord::DATE_TYPE_FIX_TERM;
-
         $shops = $card->getSelectedShops();
 
         $msgCards = wei()->wechatCard()

@@ -72,7 +72,7 @@ $view->layout();
             <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-date-info-fix-term.php') ?>
             <div class="radio">
               <label>
-                <input class="<?= $isFixTerm ? '' : 'js-editable' ?> js-toggle-display js-date-info-type"
+                <input class="<?= $card->isDateTypePermanentEditable() ? 'js-editable' : '' ?> js-toggle-display js-date-info-type"
                   id="date-info-type-3" type="radio" name="date_info[type]" value="3" checked
                   data-target=".js-date-range" data-value=":checked" data-on="disable" data-off="enable">
                 永久有效
