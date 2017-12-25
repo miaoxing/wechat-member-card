@@ -32,6 +32,8 @@ class WechatPayGiftCardRecord extends BaseModel
 
     protected $deletedByColumn = 'deleted_by';
 
+    protected $camel = true;
+
     protected $typeNames = [
         self::RULE_TYPE_PAY_MEMBER_CARD => 'RULE_TYPE_PAY_MEMBER_CARD',
     ];

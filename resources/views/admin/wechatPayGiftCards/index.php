@@ -55,28 +55,28 @@ $view->layout();
           visible: false
         },
         {
-          data: 'rule_id'
+          data: 'ruleId'
         },
         {
-          data: 'mch_id_list'
+          data: 'mchIdList'
         },
         {
-          data: 'wechat_card.title'
+          data: 'wechatCard.title'
         },
         {
-          data: 'least_cost',
+          data: 'leastCost',
           render: function (data, type, full) {
-            return data + '~' + full.max_cost;
+            return data + '~' + full.maxCost;
           }
         },
         {
-          data: 'begin_time',
+          data: 'beginTime',
           render: function (data, type, full) {
-            return data.substr(0, 10) + ' ~ ' + full.end_time.substr(0, 10);
+            return data.substr(0, 10) + ' ~ ' + full.endTime.substr(0, 10);
           }
         },
         {
-          data: 'created_at'
+          data: 'createdAt'
         },
         {
           data: 'id',
