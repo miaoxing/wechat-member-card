@@ -84,7 +84,7 @@ class WechatPayGiftCards extends BaseController
 
         $account = wei()->wechatAccount->getCurrentAccount();
         $api = $account->createApiService();
-        $ret = $api->deletePayGiftCard(['rule_id' => $wechatPayGiftCard['rule_id']]);
+        $ret = $api->deletePayGiftCard(['rule_id' => $wechatPayGiftCard['ruleId']]);
         if ($ret['code'] !== 1) {
             return $ret;
         }

@@ -24,19 +24,17 @@ class WechatPayGiftCard extends BaseService
         $account = wei()->wechatAccount->getCurrentAccount();
         $api = $account->createApiService();
         $ret = $api->addPayGiftCard([
-            'rule_info' => [
-                'type' => $card->getTypeName(),
-                'base_info' => [
-                    'mchid_list' => explode(',', $card['mch_id_list']),
-                    'begin_time' => strtotime($card['begin_time']),
-                    'end_time' => strtotime($card['end_time']),
-                ],
-                'member_rule' => [
-                    'card_id' => $card['card_id'],
-                    'least_cost' => $card['least_cost'] * 100,
-                    'max_cost' => $card['max_cost'] * 100,
-                    'jump_url' => $card['jump_link_to'] ? wei()->linkTo->getFullUrl($card['jump_link_to']) : '',
-                ],
+            'type' => $card->getTypeName(),
+            'base_info' => [
+                'mchid_list' => explode(',', $card['mchIdList']),
+                'begin_time' => strtotime($card['beginTime']),
+                'end_time' => strtotime($card['endTime']),
+            ],
+            'member_rule' => [
+                'card_id' => $card['cardId'],
+                'least_cost' => $card['leastCost'] * 100,
+                'max_cost' => $card['maxCost'] * 100,
+                'jump_url' => $card['jumpLinkTo'] ? wei()->linkTo->getFullUrl($card['jumpLinkTo']) : '',
             ],
         ]);
         if ($ret['code'] !== 1) {
@@ -50,8 +48,8 @@ class WechatPayGiftCard extends BaseService
 
         // 记录成功的内容到规则中
         $card->save([
-            'rule_id' => $ret['rule_id'],
-            'mch_id_list' => implode(',', $ret['succ_mchid_list']),
+            'ruleId' => $ret['rule_id'],
+            'mchIdList' => implode(',', $ret['succ_mchid_list']),
         ]);
 
         return $this->suc($ret);

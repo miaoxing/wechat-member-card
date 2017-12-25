@@ -42,14 +42,14 @@ class WechatPayGiftCardRecord extends BaseModel
     {
         parent::afterFind();
 
-        $this['jump_link_to'] = (array) json_decode($this['jump_link_to'], true);
+        $this['jumpLinkTo'] = (array) json_decode($this['jumpLinkTo'], true);
     }
 
     public function beforeSave()
     {
         parent::beforeSave();
 
-        $this['jump_link_to'] = json_encode($this['jump_link_to']);
+        $this['jumpLinkTo'] = json_encode($this['jumpLinkTo']);
     }
 
     public function getTypeName()
@@ -59,6 +59,6 @@ class WechatPayGiftCardRecord extends BaseModel
 
     public function wechatCard()
     {
-        return $this->belongsTo('wechatCard', 'wechat_id', 'card_id');
+        return $this->belongsTo('wechatCard', 'wechat_id', 'cardId');
     }
 }

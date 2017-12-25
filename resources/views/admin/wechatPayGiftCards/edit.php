@@ -20,7 +20,7 @@ $view->layout();
         </label>
 
         <div class="col-lg-4">
-          <select class="form-control" id="card-id" name="card_id" required>
+          <select class="form-control" id="card-id" name="cardId" required>
             <?php foreach ($cards as $card) : ?>
               <option value="<?= $card['wechat_id'] ?>"><?= $card['title'] ?></option>
             <?php endforeach ?>
@@ -35,7 +35,7 @@ $view->layout();
         </label>
 
         <div class="col-lg-4">
-          <input type="text" name="mch_id_list" id="mch-id-list" class="form-control" required>
+          <input type="text" name="mchIdList" id="mch-id-list" class="form-control" required>
         </div>
 
         <label class="col-lg-6 help-text" for="mch-id-list">
@@ -53,9 +53,9 @@ $view->layout();
 
         <div class="col-lg-4">
           <div class="input-group">
-            <input type="text" name="least-cost" id="least-cost" class="form-control text-center" value="0" required>
+            <input type="text" name="leastCost" id="least-cost" class="form-control text-center" value="0" required>
             <span class="input-group-addon">~</span>
-            <input type="text" name="max_cost" id="max_cost" class="form-control text-center" required>
+            <input type="text" name="maxCost" id="max-cost" class="form-control text-center" required>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ $view->layout();
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="js-begin-time form-control" name="begin_time" id="begin-time" required>
+            <input type="text" class="js-begin-time form-control" name="beginTime" id="begin-time" required>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@ $view->layout();
 
         <div class="col-lg-4">
           <div>
-            <input type="text" class="js-end-time form-control" name="end_time" id="end-time" required>
+            <input type="text" class="js-end-time form-control" name="endTime" id="end-time" required>
           </div>
         </div>
       </div>
@@ -206,8 +206,8 @@ $view->layout();
       .validate();
 
     $('.js-jump-link-to').linkTo({
-      data: card.jump_link_to,
-      name: 'jump_link_to',
+      data: card.jumpLinkTo,
+      name: 'jumpLinkTo',
       hide: {
         keyword: true,
         decorator: true
