@@ -3,6 +3,7 @@
 namespace Miaoxing\WechatMemberCard\Service;
 
 use miaoxing\plugin\BaseModel;
+use Miaoxing\Plugin\Traits\CamelCase;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
 /**
@@ -10,6 +11,8 @@ use Miaoxing\WechatCard\Service\WechatCardRecord;
  */
 class WechatPayGiftCardRecord extends BaseModel
 {
+    use CamelCase;
+
     const RULE_TYPE_PAY_MEMBER_CARD = 1;
 
     protected $table = 'wechat_pay_gift_cards';
@@ -31,8 +34,6 @@ class WechatPayGiftCardRecord extends BaseModel
     protected $deletedAtColumn = 'deleted_at';
 
     protected $deletedByColumn = 'deleted_by';
-
-    protected $camel = true;
 
     protected $typeNames = [
         self::RULE_TYPE_PAY_MEMBER_CARD => 'RULE_TYPE_PAY_MEMBER_CARD',
