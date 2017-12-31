@@ -3,7 +3,7 @@
 namespace Miaoxing\WechatMemberCard\Service;
 
 use miaoxing\plugin\BaseModel;
-use Miaoxing\Plugin\Traits\CamelCase;
+use Miaoxing\Plugin\Model\CamelCaseTrait;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
 /**
@@ -11,7 +11,7 @@ use Miaoxing\WechatCard\Service\WechatCardRecord;
  */
 class WechatPayGiftCardRecord extends BaseModel
 {
-    use CamelCase;
+    use CamelCaseTrait;
 
     const RULE_TYPE_PAY_MEMBER_CARD = 1;
 
