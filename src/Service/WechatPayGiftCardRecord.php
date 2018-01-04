@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatMemberCard\Service;
 
-use miaoxing\plugin\BaseModel;
+use Miaoxing\Plugin\BaseModel;
 use Miaoxing\Plugin\Model\CamelCaseTrait;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
