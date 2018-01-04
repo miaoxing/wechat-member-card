@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatMemberCard\Controller\Admin;
 
-use miaoxing\plugin\BaseController;
+use Miaoxing\Plugin\BaseController;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
 class WechatMemberCards extends BaseController
