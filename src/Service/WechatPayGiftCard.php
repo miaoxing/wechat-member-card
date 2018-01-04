@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatMemberCard\Service;
 
-use miaoxing\plugin\BaseService;
+use Miaoxing\Plugin\BaseService;
 use Wei\RetTrait;
 
 class WechatPayGiftCard extends BaseService

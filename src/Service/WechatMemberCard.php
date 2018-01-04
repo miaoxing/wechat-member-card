@@ -2,7 +2,7 @@
 
 namespace Miaoxing\WechatMemberCard\Service;
 
-use miaoxing\plugin\BaseService;
+use Miaoxing\Plugin\BaseService;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
 class WechatMemberCard extends BaseService
