@@ -4,7 +4,7 @@ namespace Miaoxing\WechatMemberCard\Controller\Admin;
 
 use Miaoxing\Plugin\BaseController;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
-use Miaoxing\WechatMemberCard\Service\WechatPayGiftCardRecord;
+use Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel;
 
 class WechatPayGiftCards extends BaseController
 {
@@ -23,21 +23,15 @@ class WechatPayGiftCards extends BaseController
     {
         switch ($req['_format']) {
             case 'json':
-                $wechatPayGiftCards = wei()->wechatPayGiftCard()->curApp();
-
-                $wechatPayGiftCards
-                    ->notDeleted()
+                $wechatPayGiftCards = wei()->wechatPayGiftCardModel()
                     ->limit($req['rows'])
-                    ->page($req['page']);
-
-                // 排序
-                $sort = $req['sort'] ?: 'id';
-                $order = $req['order'] == 'asc' ? 'ASC' : 'DESC';
-                $wechatPayGiftCards->orderBy($sort, $order);
+                    ->page($req['page'])
+                    ->setQueryParams($req)
+                    ->sort();
 
                 // 数据
                 $data = [];
-                /** @var wechatPayGiftCardRecord $wechatPayGiftCard */
+                /** @var WechatPayGiftCardModel $wechatPayGiftCard */
                 foreach ($wechatPayGiftCards->findAll() as $wechatPayGiftCard) {
                     $data[] = $wechatPayGiftCard->toArray() + [
                             'wechatCard' => $wechatPayGiftCard->wechatCard,
@@ -63,7 +57,7 @@ class WechatPayGiftCards extends BaseController
 
     public function editAction($req)
     {
-        $wechatPayGiftCard = wei()->wechatPayGiftCard()->curApp()->notDeleted()->findId($req['id']);
+        $wechatPayGiftCard = wei()->wechatPayGiftCardModel()->findId($req['id']);
 
         $cards = wei()->wechatCard()
             ->curApp()
@@ -80,7 +74,7 @@ class WechatPayGiftCards extends BaseController
 
     public function destroyAction($req)
     {
-        $wechatPayGiftCard = wei()->wechatPayGiftCard()->curApp()->notDeleted()->findOneById($req['id']);
+        $wechatPayGiftCard = wei()->wechatPayGiftCardModel()->findOneById($req['id']);
 
         $account = wei()->wechatAccount->getCurrentAccount();
         $api = $account->createApiService();
@@ -89,7 +83,7 @@ class WechatPayGiftCards extends BaseController
             return $ret;
         }
 
-        $wechatPayGiftCard->softDelete();
+        $wechatPayGiftCard->destroy();
 
         return $this->suc();
     }

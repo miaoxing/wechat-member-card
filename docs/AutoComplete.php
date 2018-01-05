@@ -1,16 +1,14 @@
 <?php
 
-namespace plugins\wechatMemberCard\docs {
-
-    use Miaoxing\WechatMemberCard\Service\WechatMemberCard;
-    use Miaoxing\WechatMemberCard\Service\WechatPayGiftCard;
-    use Miaoxing\WechatMemberCard\Service\WechatPayGiftCardRecord;
+namespace MiaoxingDoc\WechatMemberCard {
 
     /**
-     * @property WechatMemberCard $wechatMemberCard 微信会员卡
+     * @property    \Miaoxing\WechatMemberCard\Service\WechatMemberCard $wechatMemberCard 微信会员卡服务
      *
-     * @property WechatPayGiftCard $wechatPayGiftCard 支付后赠会员卡
-     * @method  WechatPayGiftCardRecord|WechatPayGiftCardRecord wechatPayGiftCard()
+     * @property    \Miaoxing\WechatMemberCard\Service\WechatPayGiftCard $wechatPayGiftCard 支付后赠会员卡服务
+     *
+     * @property    \Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel $wechatPayGiftCardModel
+     * @method      \Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel|\Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel[] wechatPayGiftCardModel()
      */
     class AutoComplete
     {
@@ -20,9 +18,21 @@ namespace plugins\wechatMemberCard\docs {
 namespace {
 
     /**
-     * @return \plugins\wechatMemberCard\docs\AutoComplete
+     * @return MiaoxingDoc\WechatMemberCard\AutoComplete
      */
     function wei()
     {
     }
+
+    /** @var Miaoxing\WechatMemberCard\Service\WechatMemberCard $wechatMemberCard */
+    $wechatMemberCard = wei()->wechatMemberCard;
+
+    /** @var Miaoxing\WechatMemberCard\Service\WechatPayGiftCard $wechatPayGiftCard */
+    $wechatPayGiftCard = wei()->wechatPayGiftCard;
+
+    /** @var Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel $wechatPayGiftCardModel */
+    $wechatPayGiftCard = wei()->wechatPayGiftCardModel();
+
+    /** @var Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel|Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel[] $wechatPayGiftCardModels */
+    $wechatPayGiftCards = wei()->wechatPayGiftCardModel();
 }

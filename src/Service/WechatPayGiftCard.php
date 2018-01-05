@@ -5,19 +5,17 @@ namespace Miaoxing\WechatMemberCard\Service;
 use Miaoxing\Plugin\BaseService;
 use Wei\RetTrait;
 
+/**
+ * 支付后赠会员卡服务
+ */
 class WechatPayGiftCard extends BaseService
 {
     use RetTrait;
 
-    public function __invoke()
-    {
-        return wei()->wechatPayGiftCardRecord();
-    }
-
     public function save($req)
     {
         // 1. 初始化规则
-        $card = wei()->wechatPayGiftCard()->curApp()->notDeleted()->findId($req['id']);
+        $card = wei()->wechatPayGiftCardModel()->findId($req['id']);
         $card->fromArray($req);
 
         // 2. 同步到微信

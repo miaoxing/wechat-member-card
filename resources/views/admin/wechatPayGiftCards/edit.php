@@ -1,6 +1,6 @@
 <?php
 
-use Miaoxing\WechatMemberCard\Service\WechatPayGiftCardRecord;
+use Miaoxing\WechatMemberCard\Service\WechatPayGiftCardModel;
 
 $view->layout();
 ?>
@@ -101,7 +101,7 @@ $view->layout();
       </div>
 
       <div class="clearfix form-actions form-group">
-        <input type="hidden" name="type" value="<?= WechatPayGiftCardRecord::RULE_TYPE_PAY_MEMBER_CARD ?>">
+        <input type="hidden" name="type" value="<?= WechatPayGiftCardModel::RULE_TYPE_PAY_MEMBER_CARD ?>">
         <input type="hidden" name="id" id="id">
 
         <div class="col-lg-offset-2">

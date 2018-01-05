@@ -5,6 +5,9 @@ namespace Miaoxing\WechatMemberCard\Service;
 use Miaoxing\Plugin\BaseService;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 
+/**
+ * 微信会员卡服务
+ */
 class WechatMemberCard extends BaseService
 {
     public function addWechatCardData(WechatCardRecord $card, $data)
