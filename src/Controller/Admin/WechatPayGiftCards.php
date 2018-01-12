@@ -26,7 +26,7 @@ class WechatPayGiftCards extends BaseController
                 $wechatPayGiftCards = wei()->wechatPayGiftCardModel()
                     ->limit($req['rows'])
                     ->page($req['page'])
-                    ->setQueryParams($req)
+                    ->setRequest($req)
                     ->sort();
 
                 // 数据
