@@ -1,11 +1,12 @@
 {
-  "name": "miaoxing/wechatMemberCard",
+  "name": "miaoxing/wechat-member-card",
   "description": "Miaoxing WechatMemberCard Plugin",
   "keywords": [
-    "miaoxing", "wechatMemberCard"
+    "miaoxing", "wechat", "member card"
   ],
   "require": {
-    "miaoxing/app": "dev-master@dev"
+    "miaoxing/app": "dev-master@dev",
+    "miaoxing/wechat-card": "dev-master@dev"
   },
   "autoload": {
     "psr-4": {
