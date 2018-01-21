@@ -4,6 +4,7 @@
   "keywords": [
     "miaoxing", "wechat", "member card"
   ],
+  "license": "MIT",
   "require": {
     "miaoxing/app": "dev-master@dev",
     "miaoxing/wechat-card": "dev-master@dev"
