@@ -30,6 +30,6 @@ class WechatPayGiftCardModel extends BaseModelV2
 
     public function wechatCard()
     {
-        return $this->belongsTo(wei()->wechatCard(), 'wechat_id', 'cardId');
+        return $this->belongsTo(wei()->wechatCard(), 'wechat_id', 'card_id');
     }
 }
