@@ -39,19 +39,6 @@ define([
             return false;
           }
 
-          if (!that.$('.js-logo-url').val()) {
-            that.$('.js-logo-file').focus();
-            $.err('请上传商户Logo');
-            return false;
-          }
-
-          if (that.$('.js-cover-type:checked').val() === '0'
-            && !that.$('.js-background-pic-url').val()) {
-            that.$('.js-background-pic-file').focus();
-            $.err('请上传卡券封面');
-            return false;
-          }
-
           // 编辑时，仅支持扩大有效期的固定日期
           if (!wechatCards.checkDateInfo(data)) {
             return false;
@@ -97,8 +84,8 @@ define([
   };
 
   WechatMemberCards.prototype.initFormPlugins = function () {
-    wechatCards.initWechatMediaUpload(this.$('.js-logo-file'));
-    wechatCards.initWechatMediaUpload(this.$('.js-background-pic-file'));
+    wechatCards.initWechatMediaUpload(this.$('.js-logo-url'));
+    wechatCards.initWechatMediaUpload(this.$('.js-background-pic-url'));
     wechatCards.initColor();
     wechatCards.initDateRange(this.data);
     wechatCards.initLinkTo(this.data);

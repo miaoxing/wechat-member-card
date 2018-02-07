@@ -33,12 +33,11 @@ $view->layout();
                 data-target=".js-cover-type-color" data-reverse-target=".js-cover-type-image"> 颜色
             </label>
 
-            <div class="js-cover-type-image js-upload-container m-t">
+            <div class="js-cover-type-image m-t">
               <p class="upload_tips">请参照 <a
                 href="https://mp.weixin.qq.com/cgi-bin/readtemplate?t=cardticket/card_cover_tmpl&type=info&lang=zh_CN"
                 target="_blank">微信图片规范</a> 上传</p>
-              <input type="file" class="js-editable js-background-pic-file"/>
-              <input type="hidden" name="background_pic_url" class="js-editable js-background-pic-url js-image-url">
+              <input type="text" name="background_pic_url" class="js-editable js-background-pic-url" required>
             </div>
 
             <div class="js-cover-type-color m-t display-none">
@@ -759,7 +758,7 @@ $view->layout();
 </div><!-- /.col -->
 <!-- /.row -->
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['plugins/wechat-member-card/js/admin/wechat-member-cards'], function (card) {
     card.formAction({
