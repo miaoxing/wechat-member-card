@@ -46,6 +46,16 @@ class Plugin extends BasePlugin
         ]);
     }
 
+    public function onWechatCardSyncMemberCard(WechatCardRecord $card, array $data)
+    {
+        $baseInfo = $data['member_card']['base_info'];
+        // TODO 更多信息
+        $card->setData([
+            'supply_bonus' => (bool) $baseInfo['supply_bonus'],
+            'prerogative' => $baseInfo['prerogative'],
+        ]);
+    }
+
     public function onAdminNavGetNavs(&$navs, &$categories, &$subCategories)
     {
         $navs[] = [
