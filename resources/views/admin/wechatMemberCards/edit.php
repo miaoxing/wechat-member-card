@@ -101,7 +101,7 @@ $view->layout();
                   title="积分有助于吸引用户成为忠实会员">?</span>
               </label>
             </div>
-            <div class="checkbox-inline">
+            <div class="checkbox-inline hide">
               <label>
                 <input name="supply_discount" type="hidden" value="0" data-populate-ignore>
                 <input class="js-editable js-supply-discount js-toggle-display" id="supply-discount" name="supply_discount"
