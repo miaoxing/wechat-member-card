@@ -495,8 +495,8 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input name="use_dynamic_code" type="hidden" value="0" data-populate-ignore>
-                <input type="checkbox" name="use_dynamic_code" id="use-dynamic-code" value="1">
+                <input class="js-editable" name="use_dynamic_code" type="hidden" value="0" data-populate-ignore>
+                <input class="js-editable" type="checkbox" name="use_dynamic_code" id="use-dynamic-code" value="1">
                 支持动态码
               </label>
             </div>
