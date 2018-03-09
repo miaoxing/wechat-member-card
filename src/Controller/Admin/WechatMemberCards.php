@@ -50,7 +50,6 @@ class WechatMemberCards extends BaseController
                     'rows' => $req['rows'],
                     'records' => $cards->count(),
                 ]);
-                break;
 
             default:
                 return get_defined_vars();
@@ -79,6 +78,11 @@ class WechatMemberCards extends BaseController
             ->andWhere("wechat_id != ''")
             ->andWhere('type != ?', WechatCardRecord::TYPE_MEMBER_CARD)
             ->fetchAll();
+
+        $this->js += [
+            'card' => $card,
+            'shops' => $shops,
+        ];
 
         return get_defined_vars();
     }

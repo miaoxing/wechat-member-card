@@ -740,6 +740,10 @@ $view->layout();
 
       <div class="clearfix form-actions form-group">
         <div class="col-lg-offset-2">
+          <?php if ($card['source'] == WechatCardRecord::SOURCE_OUT) : ?>
+            <p>外部来源的卡券保存将覆盖已有数据，可能丢失数据，暂不可编辑</p>
+          <?php endif ?>
+
           <button class="btn btn-primary" type="submit">
             <i class="fa fa-check bigger-110"></i>
             提交微信
@@ -761,9 +765,12 @@ $view->layout();
 <?= $block->js() ?>
 <script>
   require(['plugins/wechat-member-card/js/admin/wechat-member-cards'], function (card) {
+    if (wei.card.source == <?= WechatCardRecord::SOURCE_OUT ?>) {
+      $('.js-card-form :input').prop('disabled', true);
+    }
     card.formAction({
-      data: <?= $card->toJson() ?>,
-      shops: <?= $shops->toJson() ?>
+      data: wei.card,
+      shops: wei.shops
     });
   });
 </script>
