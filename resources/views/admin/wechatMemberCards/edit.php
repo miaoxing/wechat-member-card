@@ -444,7 +444,7 @@ $view->layout();
           <div class="col-lg-4">
             <div class="checkbox">
               <label>
-                <input type="hidden" value="0" name="can_share" data-populate-ignore>
+                <input class="js-editable" type="hidden" value="0" name="can_share" data-populate-ignore>
                 <input class="js-editable" type="checkbox" value="1" name="can_share" id="can_share">
                 用户可以分享领券链接
               </label>
