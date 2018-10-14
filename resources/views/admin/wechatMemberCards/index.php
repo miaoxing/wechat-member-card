@@ -1,4 +1,8 @@
-<?php $view->layout() ?>
+<?php
+
+$view->layout();
+$statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
+?>
 
 <?= $block('header-actions') ?>
 <a class="btn btn-success" href="<?= $url('admin/wechat-member-cards/new') ?>">新建会员卡</a>
@@ -76,13 +80,7 @@
 
 <script id="table-actions" type="text/html">
   <div class="action-links">
-    <!-- <% if(audit == 1) {%>
-    <a href="javascript:;" class="send-out" data-id="<%= id %>">
-      投放
-    </a>
-    <% } %>
-    -->
-    <a href="<%= $.url('admin/member-weekly-stats/show', {card_id: id}) %>">
+    <a href="<%= $.url('admin/member-<?= $statType ?>stats/show', {card_id: id}) %>">
       统计
     </a>
     <a href="<%= $.url('admin/wechat-member-cards/%s/edit', id) %>">
@@ -91,7 +89,7 @@
   </div>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['dataTable', 'form', 'jquery-deparam'], function () {
     var recordTable = $('.js-card-table').dataTable({
