@@ -18,6 +18,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
           <th>会员卡</th>
           <th>来源</th>
           <th>状态</th>
+          <th>创建时间</th>
           <th class="t-8">操作</th>
         </tr>
         </thead>
@@ -34,7 +35,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
 
 <!-- Modal -->
 <div class="modal fade" id="send-out-modal" tabindex="-1" role="dialog" aria-labelledby="card-type-modal-label"
-     aria-hidden="true">
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,6 +109,9 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
           render: function (data, type, full) {
             return full.audit == 2 ? (data + '：' + full.audit_message) : data;
           }
+        },
+        {
+          data: 'created_at',
         },
         {
           data: 'id',
