@@ -3,6 +3,7 @@
 namespace Miaoxing\WechatMemberCard\Service;
 
 use Miaoxing\Plugin\BaseModelV2;
+use Miaoxing\Plugin\Model\HasAppIdTrait;
 use Miaoxing\WechatCard\Service\WechatCardRecord;
 use Miaoxing\WechatMemberCard\Metadata\WechatPayGiftCardTrait;
 
@@ -12,6 +13,7 @@ use Miaoxing\WechatMemberCard\Metadata\WechatPayGiftCardTrait;
 class WechatPayGiftCardModel extends BaseModelV2
 {
     use WechatPayGiftCardTrait;
+    use HasAppIdTrait;
 
     const RULE_TYPE_PAY_MEMBER_CARD = 1;
 
