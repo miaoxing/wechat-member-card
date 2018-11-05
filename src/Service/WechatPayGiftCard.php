@@ -22,18 +22,20 @@ class WechatPayGiftCard extends BaseService
         $account = wei()->wechatAccount->getCurrentAccount();
         $api = $account->createApiService();
         $ret = $api->addPayGiftCard([
-            'type' => $card->getTypeName(),
-            'base_info' => [
-                'mchid_list' => explode(',', $card['mchIdList']),
-                'begin_time' => strtotime($card['beginTime']),
-                'end_time' => strtotime($card['endTime']),
-            ],
-            'member_rule' => [
-                'card_id' => $card['cardId'],
-                'least_cost' => $card['leastCost'] * 100,
-                'max_cost' => $card['maxCost'] * 100,
-                'jump_url' => $card['jumpLinkTo'] ? wei()->linkTo->getFullUrl($card['jumpLinkTo']) : '',
-            ],
+            'rule_info' => [
+                'type' => $card->getTypeName(),
+                'base_info' => [
+                    'mchid_list' => explode(',', $card['mchIdList']),
+                    'begin_time' => strtotime($card['beginTime']),
+                    'end_time' => strtotime($card['endTime']),
+                ],
+                'member_rule' => [
+                    'card_id' => $card['cardId'],
+                    'least_cost' => $card['leastCost'] * 100,
+                    'max_cost' => $card['maxCost'] * 100,
+                    'jump_url' => $card['jumpLinkTo'] ? wei()->linkTo->getFullUrl($card['jumpLinkTo']) : '',
+                ],
+            ]
         ]);
         if ($ret['code'] !== 1) {
             $ret['message'] = '保存失败，微信返回：' . $ret['message'];
