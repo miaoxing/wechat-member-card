@@ -18,7 +18,7 @@ class WechatPayGiftCardModel extends BaseModelV2
     const RULE_TYPE_PAY_MEMBER_CARD = 1;
 
     protected $defaultCasts = [
-        'jump_link_to' => 'json',
+        'jump_link_to' => 'array',
     ];
 
     protected $typeNames = [
