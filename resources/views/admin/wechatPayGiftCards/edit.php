@@ -165,7 +165,7 @@ $view->layout();
   </div>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require([
     'form',
@@ -209,8 +209,7 @@ $view->layout();
       data: card.jumpLinkTo,
       name: 'jumpLinkTo',
       hide: {
-        keyword: true,
-        decorator: true
+        keyword: true
       }
     });
 
