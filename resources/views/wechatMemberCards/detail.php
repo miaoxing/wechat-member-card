@@ -39,7 +39,7 @@ $view->layout();
 
           <div class="col-xs-9 list-content">
             <?php foreach ($card['business_service'] as $service) : ?>
-              <span class="badge"><?= $serviceNames[$service] ?></span>
+              <span class="badge badge-success"><?= $serviceNames[$service] ?></span>
             <?php endforeach ?>
           </div>
         </li>
