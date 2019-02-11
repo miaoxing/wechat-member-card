@@ -10,7 +10,7 @@ $view->layout();
 <?= $block->end() ?>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <!-- PAGE CONTENT BEGINS -->
     <form class="js-card-form form-horizontal" method="post" role="form">
       <fieldset>
@@ -739,7 +739,7 @@ $view->layout();
       <input class="js-editable" type="hidden" id="get-limit" name="get_limit" value="1">
 
       <div class="clearfix form-actions form-group">
-        <div class="col-lg-offset-2">
+        <div class="offset-lg-2">
           <?php if ($card['source'] == WechatCardRecord::SOURCE_OUT) : ?>
             <p>外部来源的卡券保存将覆盖已有数据，可能丢失数据，暂不可编辑</p>
           <?php endif ?>

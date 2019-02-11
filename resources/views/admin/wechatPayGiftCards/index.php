@@ -9,7 +9,7 @@ $view->layout();
 <?= $block->end() ?>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <!-- PAGE CONTENT BEGINS -->
     <div class="table-responsive">
 
@@ -42,7 +42,7 @@ $view->layout();
     data-href="<%= $.url('admin/wechat-pay-gift-cards/%s/destroy', id) %>">删除</a>
 </script>
 
-<?= $block('js') ?>
+<?= $block->js() ?>
 <script>
   require(['form', 'dataTable'], function (form) {
     var $table = this.$('.js-card-table').dataTable({

@@ -10,7 +10,7 @@ $view->layout();
 <?= $block->end() ?>
 
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <form class="js-card-form form-horizontal" role="form" method="post">
 
       <div class="form-group">
@@ -104,7 +104,7 @@ $view->layout();
         <input type="hidden" name="type" value="<?= WechatPayGiftCardModel::RULE_TYPE_PAY_MEMBER_CARD ?>">
         <input type="hidden" name="id" id="id">
 
-        <div class="col-lg-offset-2">
+        <div class="offset-lg-2">
           <button class="btn btn-primary" type="submit">
             <i class="fa fa-check bigger-110"></i>
             提交
