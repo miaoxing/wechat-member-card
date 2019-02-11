@@ -54,7 +54,9 @@ $view->layout();
         <div class="col-lg-4">
           <div class="input-group">
             <input type="text" name="leastCost" id="least-cost" class="form-control text-center" value="0" required>
-            <span class="input-group-addon">~</span>
+            <div class="input-group-prepend input-group-append">
+              <div class="input-group-text">~</div>
+            </div>
             <input type="text" name="maxCost" id="max-cost" class="form-control text-center" required>
           </div>
         </div>

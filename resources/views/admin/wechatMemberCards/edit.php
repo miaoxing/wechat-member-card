@@ -201,7 +201,7 @@ $view->layout();
             <div class="col-lg-4">
               <div class="input-group">
                 <input type="text" class="js-editable form-control" name="discount" id="discount">
-                <span class="input-group-addon">折</span>
+                <span class="input-group-append"><span class="input-group-text">折</span></span>
               </div>
             </div>
 
