@@ -46,7 +46,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
       <div class="modal-body">
         <h5 class="text-center">你可以通过以下方式投放卡券</h5>
 
-        <!--<div class="radio radio-lg col-offset-2">
+        <!--<div class="radio radio-lg offset-2">
             <label>
                 <input type="radio" name="type" class="sendOut" id="sendOut1" value="1">
                 直接群发卡券
@@ -54,7 +54,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
             <label class="text-muted block" for="sendOut1">通过公众号消息，直接投放</label>
         </div>
 
-        <div class="radio radio-lg col-offset-2">
+        <div class="radio radio-lg offset-2">
             <label>
                 <input type="radio" name="type" class="sendOut" id="sendOut2" value="2">
                 嵌入图文消息
@@ -62,7 +62,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
             <label class="text-muted block" for="sendOut2">将卡券嵌入图文消息，再由公众号投放</label>
         </div>-->
 
-        <div class="radio radio-lg col-offset-2">
+        <div class="radio radio-lg offset-2">
           <label>
             <input type="radio" name="type" class="sendOut" id="sendOut3" value="3" checked>
             下载二维码
