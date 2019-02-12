@@ -39,9 +39,10 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-            class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="card-type-modal-label">投放卡券</h4>
+        <h5 class="modal-title" id="card-type-modal-label">投放卡券</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
         <h5 class="text-center">你可以通过以下方式投放卡券</h5>
