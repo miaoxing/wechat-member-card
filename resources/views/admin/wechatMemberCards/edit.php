@@ -526,7 +526,7 @@ $view->layout();
         <legend class="grey bigger-130">
           自定义会员信息入口
           <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#custom-cell-collapse"
+          <a class="btn btn-link btn-sm" data-toggle="collapse" href="#custom-cell-collapse"
             aria-expanded="false" aria-controls="custom-cell-collapse" data-hide-text="收起">
             展开
           </a>
@@ -571,7 +571,7 @@ $view->layout();
         <legend class="grey bigger-130">
           会员卡激活消息
           <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#activate-msg-operation-collapse"
+          <a class="btn btn-link btn-sm" data-toggle="collapse" href="#activate-msg-operation-collapse"
             aria-expanded="false" aria-controls="activate-msg-operation-collapse" data-hide-text="收起">
             展开
           </a>
@@ -654,7 +654,7 @@ $view->layout();
         <legend class="grey bigger-130">
           会员卡积分余额等变动消息
           <small>(选填)</small>
-          <a class="btn btn-link btn-sm" type="button" data-toggle="collapse" href="#modify-msg-operation-collapse"
+          <a class="btn btn-link btn-sm" data-toggle="collapse" href="#modify-msg-operation-collapse"
             aria-expanded="false" aria-controls="modify-msg-operation-collapse" data-hide-text="收起">
             展开
           </a>
