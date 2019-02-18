@@ -406,7 +406,7 @@ $view->layout();
                 <input class="js-editable js-toggle-display" id="activate-type" type="radio" name="activate_type" value="0" checked data-value=":checked" data-reverse-target=".js-activate-link-to">
                 自动激活
               </label>
-              <label class="block text-muted">
+              <label class="d-block text-muted">
                 用户领取卡片之后，系统自动帮用户激活，积分、储值等自定义显示信息均为0。详见微信文档
                 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025283" target="_blank">#6.3</a>
               </label>
@@ -417,7 +417,7 @@ $view->layout();
                 <input class="js-editable js-toggle-display" type="radio" name="activate_type" value="1" data-value=":checked" data-reverse-target=".js-activate-link-to">
                 一键激活
               </label>
-              <label class="block text-muted">
+              <label class="d-block text-muted">
                 一键激活是微信提供的快速便捷的激活方案。详见微信文档
                 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025283" target="_blank">#6.2</a>
               </label>
@@ -427,7 +427,7 @@ $view->layout();
                 <input class="js-editable js-toggle-display" type="radio" name="activate_type" value="2" data-value=":checked" data-target=".js-activate-link-to">
                 接口激活
               </label>
-              <label class="block text-muted">
+              <label class="d-block text-muted">
                 接口激活通常需要开发者开发用户填写资料的网页。详见微信文档
                 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025283" target="_blank">#6.1</a>
                 <p class="js-editable js-link-to js-activate-link-to form-control-static" id="activate-link-to" data-name="activate_link_to"></p>

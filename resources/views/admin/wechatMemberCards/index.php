@@ -68,7 +68,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
             <input type="radio" name="type" class="sendOut" id="sendOut3" value="3" checked>
             下载二维码
           </label>
-          <label class="text-muted block" for="sendOut3">下载卡券二维码，通过打印张贴或其他渠道发放</label>
+          <label class="text-muted d-block" for="sendOut3">下载卡券二维码，通过打印张贴或其他渠道发放</label>
         </div>
 
       </div>
