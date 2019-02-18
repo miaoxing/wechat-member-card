@@ -14,7 +14,7 @@ $view->layout();
     <!-- PAGE CONTENT BEGINS -->
     <form class="js-card-form form-horizontal" method="post" role="form">
       <fieldset>
-        <legend class="grey bigger-130">基本信息</legend>
+        <legend class="text-muted bigger-130">基本信息</legend>
 
         <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-brand.php') ?>
 
@@ -214,7 +214,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">会员卡详情</legend>
+        <legend class="text-muted bigger-130">会员卡详情</legend>
 
         <div class="form-group">
           <label class="col-lg-2 control-label" for="detail">
@@ -236,7 +236,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">
+        <legend class="text-muted bigger-130">
           会员信息类目
         </legend>
 
@@ -396,7 +396,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">使用设置</legend>
+        <legend class="text-muted bigger-130">使用设置</legend>
 
         <div class="form-group">
           <label class="col-lg-2 control-label" for="activate-type">激活方式</label>
@@ -512,7 +512,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">服务信息</legend>
+        <legend class="text-muted bigger-130">服务信息</legend>
 
         <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-shop.php') ?>
       </fieldset>
@@ -523,7 +523,7 @@ $view->layout();
       <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-promotion-url.php') ?>
 
       <fieldset>
-        <legend class="grey bigger-130">
+        <legend class="text-muted bigger-130">
           自定义会员信息入口
           <small>(选填)</small>
           <a class="btn btn-link btn-sm" data-toggle="collapse" href="#custom-cell-collapse"
@@ -568,7 +568,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">
+        <legend class="text-muted bigger-130">
           会员卡激活消息
           <small>(选填)</small>
           <a class="btn btn-link btn-sm" data-toggle="collapse" href="#activate-msg-operation-collapse"
@@ -651,7 +651,7 @@ $view->layout();
       </fieldset>
 
       <fieldset>
-        <legend class="grey bigger-130">
+        <legend class="text-muted bigger-130">
           会员卡积分余额等变动消息
           <small>(选填)</small>
           <a class="btn btn-link btn-sm" data-toggle="collapse" href="#modify-msg-operation-collapse"
