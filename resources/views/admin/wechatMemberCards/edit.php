@@ -33,14 +33,14 @@ $view->layout();
                 data-target=".js-cover-type-color" data-reverse-target=".js-cover-type-image"> 颜色
             </label>
 
-            <div class="js-cover-type-image m-t">
+            <div class="js-cover-type-image mt-3">
               <p class="upload_tips">请参照 <a
                 href="https://mp.weixin.qq.com/cgi-bin/readtemplate?t=cardticket/card_cover_tmpl&type=info&lang=zh_CN"
                 target="_blank">微信图片规范</a> 上传</p>
               <input type="text" name="background_pic_url" class="js-editable js-background-pic-url" required>
             </div>
 
-            <div class="js-cover-type-color m-t display-none">
+            <div class="js-cover-type-color mt-3 display-none">
               <?php require $view->getFile('@wechat-card/admin/wechatCards/_form-color.php') ?>
             </div>
           </div>
