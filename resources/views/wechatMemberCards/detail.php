@@ -3,7 +3,7 @@
 $view->layout();
 ?>
 
-<div class="container-fluid text-normal bg-light">
+<div class="container-fluid text-sm bg-light">
   <div class="m-l">
   <div class="row list-header">
     <h4 class="list-heading">
