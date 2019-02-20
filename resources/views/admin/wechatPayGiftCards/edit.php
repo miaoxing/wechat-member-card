@@ -172,7 +172,7 @@ $view->layout();
   require([
     'form',
     'linkTo',
-    'validator',
+    'plugins/app/js/validation',
     'plugins/admin/js/range-date-time-picker',
     'plugins/app/libs/jquery.populate/jquery.populate'
   ], function (form) {
