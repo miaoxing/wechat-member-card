@@ -93,7 +93,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
 
 <?= $block->js() ?>
 <script>
-  require(['dataTable', 'form', 'jquery-deparam'], function () {
+  require(['plugins/admin/js/data-table', 'form', 'jquery-deparam'], function () {
     var recordTable = $('.js-card-table').dataTable({
       ajax: {
         url: $.queryUrl('admin/wechat-member-cards.json')
