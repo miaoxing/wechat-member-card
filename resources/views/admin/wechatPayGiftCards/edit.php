@@ -173,7 +173,7 @@ $view->layout();
     'form',
     'linkTo',
     'validator',
-    'assets/dateTimePicker',
+    'plugins/admin/js/range-date-time-picker',
     'plugins/app/libs/jquery.populate/jquery.populate'
   ], function (form) {
     var card = <?= $wechatPayGiftCard->toJson() ?>;

@@ -1,6 +1,6 @@
 define([
   'plugins/wechat-card/js/admin/wechat-cards',
-  'assets/dateTimePicker'
+  'plugins/admin/js/range-date-time-picker'
 ], function (wechatCards) {
   var MAX_CUSTOM_FIELDS = 3;
 
