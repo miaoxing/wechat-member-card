@@ -171,7 +171,7 @@ $view->layout();
 <script>
   require([
     'form',
-    'linkTo',
+    'plugins/link-to/js/link-to',
     'plugins/app/js/validation',
     'plugins/admin/js/range-date-time-picker',
     'plugins/app/libs/jquery.populate/jquery.populate'
