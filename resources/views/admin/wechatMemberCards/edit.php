@@ -267,7 +267,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" data-name="bonus_link_to" id="bonus-link-to"></p>
+              <p class="js-editable js-link-to form-control-plaintext" data-name="bonus_link_to" id="bonus-link-to"></p>
             </div>
             <label for="bonus-url" class="col-lg-6 help-text">仅适用于积分无法通过激活接口同步的情况下使用该字段。</label>
           </div>
@@ -329,7 +329,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" data-name="balance_link_to" id="balance-link-to"></p>
+              <p class="js-editable js-link-to form-control-plaintext" data-name="balance_link_to" id="balance-link-to"></p>
             </div>
             <label for="balance-url" class="col-lg-6 help-text">仅适用于余额无法通过激活接口同步的情况下使用该字段。</label>
           </div>
@@ -388,7 +388,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[link_to]"></p>
+              <p class="js-editable js-link-to form-control-plaintext" id="custom-field<?= $i ?>-url" data-name="custom_field<?= $i ?>[link_to]"></p>
             </div>
           </div>
         </div>
@@ -430,7 +430,7 @@ $view->layout();
               <label class="d-block text-muted">
                 接口激活通常需要开发者开发用户填写资料的网页。详见微信文档
                 <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1451025283" target="_blank">#6.1</a>
-                <p class="js-editable js-link-to js-activate-link-to form-control-static" id="activate-link-to" data-name="activate_link_to"></p>
+                <p class="js-editable js-link-to js-activate-link-to form-control-plaintext" id="activate-link-to" data-name="activate_link_to"></p>
               </label>
             </div>
           </div>
@@ -550,7 +550,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="custom-cell-link-to" data-name="custom_cell[link_to]"></p>
+              <p class="js-editable js-link-to form-control-plaintext" id="custom-cell-link-to" data-name="custom_cell[link_to]"></p>
             </div>
           </div>
 
@@ -605,7 +605,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="activate-msg-operation-link-to" data-name="activate_msg_operation[url_cell][link_to]"></p>
+              <p class="js-editable js-link-to form-control-plaintext" id="activate-msg-operation-link-to" data-name="activate_msg_operation[url_cell][link_to]"></p>
             </div>
           </div>
 
@@ -688,7 +688,7 @@ $view->layout();
             </label>
 
             <div class="col-lg-4">
-              <p class="js-editable js-link-to form-control-static" id="modify-msg-operation-link-to" data-name="modify_msg_operation[url_cell][link_to]"></p>
+              <p class="js-editable js-link-to form-control-plaintext" id="modify-msg-operation-link-to" data-name="modify_msg_operation[url_cell][link_to]"></p>
             </div>
           </div>
 

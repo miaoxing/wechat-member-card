@@ -94,7 +94,7 @@ $view->layout();
         </label>
 
         <div class="col-lg-4">
-          <p class="js-jump-link-to form-control-static" id="jump-link-to"></p>
+          <p class="js-jump-link-to form-control-plaintext" id="jump-link-to"></p>
         </div>
 
         <label class="col-lg-6 help-text" for="jump-link-to">
