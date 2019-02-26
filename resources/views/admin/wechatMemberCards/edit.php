@@ -6,7 +6,7 @@ $view->layout();
 ?>
 
 <?= $block('header-actions') ?>
-<a class="btn btn-default" href="<?= $url('admin/wechat-member-cards') ?>">返回列表</a>
+<a class="btn btn-secondary" href="<?= $url('admin/wechat-member-cards') ?>">返回列表</a>
 <?= $block->end() ?>
 
 <div class="row">
@@ -750,7 +750,7 @@ $view->layout();
           </button>
 
           &nbsp; &nbsp; &nbsp;
-          <a class="btn btn-default" href="<?= $url('admin/wechat-member-cards') ?>">
+          <a class="btn btn-secondary" href="<?= $url('admin/wechat-member-cards') ?>">
             <i class="fa fa-undo bigger-110"></i>
             返回列表
           </a>

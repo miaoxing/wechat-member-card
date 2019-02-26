@@ -73,7 +73,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="confirm-send-out">确定</button>
       </div>
     </div>
