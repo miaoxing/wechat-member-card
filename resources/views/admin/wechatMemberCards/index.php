@@ -124,7 +124,7 @@ $statType = wei()->member->statType ? (wei()->member->statType . '-') : '';
       ]
     });
 
-    recordTable.deletable('.delete-record', '删除后,已领取的卡券仍然有效,确认删除?');
+    recordTable.deletable('.delete-record', '删除后,已领取的卡券仍然有效,确定删除?');
 
     $('#search-form').update(function () {
       recordTable.reload($(this).serialize(), false);
