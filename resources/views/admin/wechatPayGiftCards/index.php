@@ -44,7 +44,7 @@ $view->layout();
 
 <?= $block->js() ?>
 <script>
-  require(['form', 'plugins/admin/js/data-table'], function (form) {
+  require(['plugins/admin/js/form', 'plugins/admin/js/data-table'], function (form) {
     var $table = this.$('.js-card-table').dataTable({
       ajax: {
         url: $.queryUrl('admin/wechat-pay-gift-cards.json')

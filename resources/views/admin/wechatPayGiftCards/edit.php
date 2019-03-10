@@ -170,7 +170,7 @@ $view->layout();
 <?= $block->js() ?>
 <script>
   require([
-    'form',
+    'plugins/admin/js/form',
     'plugins/link-to/js/link-to',
     'plugins/app/js/validation',
     'plugins/admin/js/range-date-time-picker',
